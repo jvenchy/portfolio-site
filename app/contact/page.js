@@ -8,12 +8,12 @@ import Socials from "../../components/Socials";
 import Navbar from "../../components/Navbar";
 
 export default function Contact() {
-  const [activeSection, setActiveSection] = useState("sendmail");
+  const [activeSection, setActiveSection] = useState("socials");
   const scrollTimeout = useRef(null);
   const scrolling = useRef(false);
   const pathname = usePathname();
 
-  const sections = ["sendmail", "socials"];
+  const sections = ["socials", "sendmail"];
 
   // ... copy all the scrolling logic from your portfolio page ...
   // (smoothScrollTo, handleScroll, and all useEffects should be the same)
@@ -138,11 +138,11 @@ export default function Contact() {
       <Navbar />
       <div className="pt-16">
         <div className="relative h-screen">
+        <section id="socials" className="min-h-screen snap-start">
+            <Socials />
+          </section>
           <section id="sendmail" className="min-h-screen snap-start">
             <SendMail />
-          </section>
-          <section id="socials" className="min-h-screen snap-start">
-            <Socials />
           </section>
         </div>
       </div>
