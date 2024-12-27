@@ -40,11 +40,11 @@ export default function About() {
         {/* Resume Link */}
         <p className="mt-12 font-mono text-black">
         💡 See more on my{' '}
-          <Link href="/resume">
-            <span className="transition-all duration-500 text-theme hover:underline hover:text-themedark cursor-pointer">Resume</span>
-          </Link> {' '}
-          and <Link href="/portfolio">
+          <Link href="/portfolio">
             <span className="transition-all duration-500 text-theme hover:underline hover:text-themedark cursor-pointer">Portfolio</span>
+          </Link> {' '}
+          and <Link href="/resume">
+            <span className="transition-all duration-500 text-theme hover:underline hover:text-themedark cursor-pointer">Resume</span>
           </Link>
           !
         </p>

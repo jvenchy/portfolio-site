@@ -20,14 +20,14 @@ export default function Introduction() {
           <p className="mb-4 font-mono text-black">
             I'm an aspiring software engineer with a passion for full-stack web development, system architecture, and UX. 🌿
           </p>
-          <div className="flex flex-row space-x-4 mt-4"> {/* Changed back to flex-row for horizontal layout */}
+          <div className="flex flex-row space-x-4 mt-4">
             <a
               href="https://linkedin.com/in/joshshergill"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 font-bold text-theme transition-all duration-200 hover:underline"
             >
-              <FaLinkedin className="text-xl" /> {/* LinkedIn icon */}
+              <FaLinkedin size="1.25rem" /> {/* LinkedIn icon */}
               <span>LinkedIn</span>
             </a>
             <a
@@ -36,7 +36,7 @@ export default function Introduction() {
               rel="noopener noreferrer"
               className="flex items-center space-x-2 font-bold text-theme transition-all duration-200 hover:underline"
             >
-              <FaGithub className="text-xl" /> {/* GitHub icon */}
+              <FaGithub size="1.25rem" /> {/* GitHub icon */}
               <span>GitHub</span>
             </a>
           </div>
