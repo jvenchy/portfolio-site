@@ -1,20 +1,22 @@
+// app/contact/page.tsx
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
-import Introduction from '../components/Introduction';
-import Technologies from '../components/Technologies';
-import About from '../components/About';
-import PersonalInterests from '../components/PersonalInterests';
-import Navbar from "../components/Navbar";
+import React, { useEffect, useState, useRef } from "react";
+import { usePathname } from 'next/navigation';
+import SendMail from "../../components/SendMail";
+import Socials from "../../components/Socials";
+import Navbar from "../../components/Navbar";
 
-export default function Home() {
-  const [activeSection, setActiveSection] = useState("introduction");
+export default function Contact() {
+  const [activeSection, setActiveSection] = useState("sendmail");
   const scrollTimeout = useRef(null);
   const scrolling = useRef(false);
+  const pathname = usePathname();
 
-  // Make sure these IDs exactly match the section IDs in your JSX
-  const sections = ["introduction", "about", "technologies", "personal-life"];
+  const sections = ["sendmail", "socials"];
 
+  // ... copy all the scrolling logic from your portfolio page ...
+  // (smoothScrollTo, handleScroll, and all useEffects should be the same)
   const smoothScrollTo = (element, duration = 800) => {
     if (!element) return;
 
@@ -100,6 +102,28 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // Run immediately
+    window.scrollTo(0, 0);
+    
+    // Run after a brief delay to ensure all content is loaded
+    const timeoutId = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+  
+    // Also handle the router events if using Next.js
+    if (typeof window !== 'undefined') {
+      window.history.scrollRestoration = 'manual';
+    }
+  
+    return () => {
+      clearTimeout(timeoutId);
+      if (typeof window !== 'undefined') {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -112,19 +136,15 @@ export default function Home() {
   return (
     <main className="relative h-screen overflow-y-auto snap-y snap-mandatory">
       <Navbar />
-      <div className="relative h-screen">
-        <section id="introduction" className="h-screen snap-start">
-          <Introduction />
-        </section>
-        <section id="about" className="h-screen snap-start">
-          <About />
-        </section>
-        <section id="technologies" className="h-screen snap-start">
-          <Technologies />
-        </section>
-        <section id="personal-life" className="h-screen snap-start">
-          <PersonalInterests />
-        </section>
+      <div className="pt-16">
+        <div className="relative h-screen">
+          <section id="sendmail" className="min-h-screen snap-start">
+            <SendMail />
+          </section>
+          <section id="socials" className="min-h-screen snap-start">
+            <Socials />
+          </section>
+        </div>
       </div>
       <div className="fixed top-1/2 transform -translate-y-1/2 right-8 flex flex-col space-y-2 z-50">
         {sections.map((section) => (

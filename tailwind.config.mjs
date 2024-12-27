@@ -7,9 +7,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        gotham: ['"Gotham Black"', 'Arial', 'sans-serif'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        theme: "#0B8173",
+        themedark: "#0CC7C0",
       },
     },
   },

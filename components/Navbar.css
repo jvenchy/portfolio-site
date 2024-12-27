@@ -1,0 +1,39 @@
+.navbar {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  font-family: monospace, Arial, sans-serif;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  font-size: 18px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff; /* White text */
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 24px; /* Fix line height to avoid resizing */
+  transition: all 0.3s ease;
+  display: inline-block; /* Ensures consistent sizing */
+}
+
+.nav-link:hover {
+  color: #0CC7C0; /* Change text color */
+  transform: scale(1.1); /* Scale up slightly */
+}
