@@ -197,8 +197,8 @@ const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ pro
         rel="noopener noreferrer"
         className="transition-all duration-500 inline-flex items-center text-white hover:underline hover:text-theme"
       >
-        <FaLink size={16} />
-        View Project (Github)
+        <FaLink size={16} className="mr-2" />
+         View Project (Github)
       </a>
     </div>
   </div>
