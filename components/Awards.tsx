@@ -5,7 +5,7 @@ export default function Awards() {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
       <div className="w-full max-w-screen-lg px-4">
-      <h2 className="text-8xl font-bold text-theme mb-4">Awards</h2>
+      <h2 className="text-7xl font-bold text-theme mb-4">Awards</h2>
       <div className="font-mono text-black">
         <h3 className="text-2xl font-bold mb-2">Amazon Web Services x UofT Hackathon, First Place 🏆</h3>
         <p className="mb-4">November 29th, 2024</p>
@@ -30,7 +30,7 @@ export default function Awards() {
         </p>
 
         <p className="mt-4">
-        I led cloud architecture design decisions and developed the entire front-end web application. It was a great time learning to use Amazon Web Services while having actual solution architects on standby (thank god for y'all). Thanks to IEEE University of Toronto Student Branch x Amazon Web Services (AWS) Hack The Student Life for hosting a great event, and big shoutout to my teammates Guransh Singh, Raunak Madan, and Nauhar Kapur!
+        I led cloud architecture design decisions and developed the entire front-end web application. It was a great time learning to use Amazon Web Services while having actual solution architects on standby (thank god for y'all).
         </p>
 
         <p className="mt-4">

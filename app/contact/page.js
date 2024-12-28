@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import SendMail from "../../components/SendMail";
 import Socials from "../../components/Socials";
 import Navbar from "../../components/Navbar";
+import ScrollDirectionIndicator from '../../components/Scroll';
 
 export default function Contact() {
   const [activeSection, setActiveSection] = useState("socials");
@@ -150,12 +151,13 @@ export default function Contact() {
         {sections.map((section) => (
           <div
             key={section}
-            className={`w-5 h-5 rounded-full transition-colors duration-700 ${
+            className={`w-4 h-4 rounded-full transition-colors duration-700 ${
               activeSection === section ? "bg-theme" : "bg-gray-400"
             }`}
           ></div>
         ))}
       </div>
+      <ScrollDirectionIndicator activeSection={activeSection} sections={sections} />
     </main>
   );
 }

@@ -2,10 +2,14 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import Introduction from '../components/Introduction';
+import Awards from "../components/Awards";
+import Projects from "../components/Projects";
+import Experiences from "../components/Experiences";
 import Technologies from '../components/Technologies';
 import About from '../components/About';
 import PersonalInterests from '../components/PersonalInterests';
 import Navbar from "../components/Navbar";
+import ScrollDirectionIndicator from '../components/Scroll';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("introduction");
@@ -13,7 +17,7 @@ export default function Home() {
   const scrolling = useRef(false);
 
   // Make sure these IDs exactly match the section IDs in your JSX
-  const sections = ["introduction", "about", "technologies", "personal-life"];
+  const sections = ["introduction", "about", "projects", "awards", "experiences", "technologies",  "personal-life"];
 
   const smoothScrollTo = (element, duration = 800) => {
     if (!element) return;
@@ -119,6 +123,15 @@ export default function Home() {
         <section id="about" className="h-screen snap-start">
           <About />
         </section>
+        <section id="projects" className="h-screen snap-start">
+          <Projects />
+        </section>
+        <section id="awards" className="h-screen snap-start">
+          <Awards />
+        </section>
+        <section id="experiences" className="h-screen snap-start">
+          <Experiences />
+        </section>
         <section id="technologies" className="h-screen snap-start">
           <Technologies />
         </section>
@@ -130,12 +143,13 @@ export default function Home() {
         {sections.map((section) => (
           <div
             key={section}
-            className={`w-5 h-5 rounded-full transition-colors duration-700 ${
+            className={`w-3 h-3 right-4 rounded-full transition-colors duration-500 ${
               activeSection === section ? "bg-theme" : "bg-gray-400"
             }`}
           ></div>
         ))}
       </div>
+      <ScrollDirectionIndicator activeSection={activeSection} sections={sections} />
     </main>
   );
 }

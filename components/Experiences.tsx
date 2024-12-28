@@ -38,7 +38,7 @@ export default function Experiences() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
-      <h2 className="text-8xl text-theme font-bold mb-12">🏖️ My Experience.</h2>
+      <h2 className="text-7xl text-theme font-bold mb-12">🏖️ My Experience</h2>
       <div className="flex font-mono text-white space-x-4 overflow-x-auto pb-4">
         {experiences.map((experience) => (
           <div

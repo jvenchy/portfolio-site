@@ -4,7 +4,7 @@ export default function PersonalInterests() {
   return (
     <section id="personal-life" className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
       <div className="w-full max-w-screen-lg px-4 md:px-8">
-        <h2 className="text-8xl font-bold mb-12 text-theme text-center">🏂 Other Stuff 🏔️💿</h2>
+        <h2 className="text-7xl font-bold mb-12 text-theme text-center">🏂 Other Stuff 🏔️💿</h2>
 
         <p className="mb-8 font-mono text-black text-center">
           When I'm not coding, you can find me on the{' '}

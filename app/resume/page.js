@@ -44,7 +44,7 @@ export default function Resume() {
         {sections.map((section) => (
           <div
             key={section}
-            className={`w-5 h-5 rounded-full transition-colors duration-700 ${
+            className={`w-4 h-4 rounded-full transition-colors duration-700 ${
               activeSection === section ? "bg-theme" : "bg-gray-400"
             }`}
           ></div>

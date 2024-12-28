@@ -209,9 +209,9 @@ export default function Projects() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100 py-16">
-      <h2 className="text-6xl md:text-8xl text-theme font-bold mb-12">Projects 🛠️</h2>
+      <h2 className="text-6xl md:text-7xl text-theme font-bold mb-12">My Projects 🛠️</h2>
 
-      <div className="mt-12 w-full max-w-7xl px-4">
+      <div className="w-full max-w-7xl px-4">
       <Carousel
         responsive={responsive}
         infinite={true}

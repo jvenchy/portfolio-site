@@ -17,7 +17,7 @@ export default function SendMail() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-4 bg-gradient-to-r from-green-200 to-blue-200">
-      <h2 className="text-8xl font-bold text-theme mb-8">...Or Send Me Mail 📬</h2>
+      <h2 className="text-7xl font-bold text-theme mb-8">...Or Send Me Mail 📬</h2>
       <form onSubmit={handleSubmit} className="w-full max-w-lg font-mono">
         <div className="mb-3">
           <label htmlFor="name" className="block font-sans text-black mb-1">Name</label>

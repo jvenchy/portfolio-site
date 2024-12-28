@@ -4,7 +4,7 @@ import React from 'react';
 export default function About() {
   return (
     <section id="about" className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
-      <h2 className="text-8xl font-bold text-theme mb-12">Technologies 🌴</h2>
+      <h2 className="text-7xl font-bold text-theme mb-12">Technologies 🌴</h2>
         {/* Mosaic of Skill Logos */}
         <div className="ml-12 mr-12 mb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-6 text-theme">
           {[
@@ -40,10 +40,7 @@ export default function About() {
         {/* Resume Link */}
         <p className="mt-12 font-mono text-black">
         💡 See more on my{' '}
-          <Link href="/portfolio">
-            <span className="transition-all duration-500 text-theme hover:underline hover:text-themedark cursor-pointer">Portfolio</span>
-          </Link> {' '}
-          and <Link href="/resume">
+          <Link href="/resume">
             <span className="transition-all duration-500 text-theme hover:underline hover:text-themedark cursor-pointer">Resume</span>
           </Link>
           !

@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaPhone, FaEnvelope } from 'react-icons/fa';
 export default function Socials() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center px-4 bg-gradient-to-r from-green-200 to-blue-200">
-      <h2 className="text-8xl font-bold text-theme mb-12">Socials.</h2>
+      <h2 className="text-7xl font-bold text-theme mb-12">Socials.</h2>
       <div className="font-mono text-black space-y-8">
         <a 
           href="https://github.com/jvenchy" 

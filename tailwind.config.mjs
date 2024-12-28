@@ -13,8 +13,17 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        theme: "#0B8173",
+        theme: "#0B9173",
         themedark: "#0CC7C0",
+      },
+      keyframes: {
+        'cursor-blink': {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0 },
+        },
+      },
+      animation: {
+        'cursor-blink': 'cursor-blink 1s ease-in-out infinite',
       },
     },
   },
