@@ -128,7 +128,7 @@ const projects: Project[] = [
   {
     id: 12,
     imagelink: "/project-images/12.png",
-    title: "{Web-Based} Ingredient and Diet-based Recipe Finder",
+    title: "Web-Based Ingredient and Diet-based Recipe Finder",
     tech: "React, Tailwind, Next.js",
     year: "11/2024",
     description:
@@ -172,16 +172,16 @@ const ProjectCard: React.FC<{ project: Project; onClick: (event: React.MouseEven
 );
 
 const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div className="mt-10 fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div
       onClick={(e) => e.stopPropagation()}
-      className="bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      className="relative bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
     >
       <button
         onClick={() => onClose()}
-        className="mb-4 px-3 py-1 bg-red-400 text-white hover:px-5 transition-all duration-300 rounded-full hover:bg-red-500"
+        className="absolute top-4 right-4 mb-4 px-3 py-1 bg-red-400 text-white transition-all duration-300 rounded-full hover:bg-red-500"
       >
-        X
+        x
       </button>
       <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
       <p className="text-lg text-gray-700 mb-2">{project.tech}</p>
