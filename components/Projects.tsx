@@ -117,13 +117,13 @@ const projects: Project[] = [
   },
   {
     id: 11,
-    imagelink: "/project-images/13.png",
+    imagelink: "/project-images/11.png",
     title: "Figma Designs for EventBox: A Card-Based Event Application",
     tech: "Figma",
     year: "10/2024",
     description:
       "Created Figma mockup designs for a website that simplifies finding clubs for college students. Prioritized a simplistic and trendy design that resonated with college students.",
-    githubLink: "https://www.figma.com/design/1Rv1eSlyWcbNmG1p4HcKGY/Clark?node-id=1669-162202&t=DxwcgqUeOlcVwmjy-1",
+    githubLink: "https://www.figma.com/design/WE0JkxXU8rQZSYgqMCmKAU/eventPill?node-id=0-1&p=f&t=k7ft0ZQ1ny4zkiT6-0",
   },
   {
     id: 12,
@@ -137,7 +137,7 @@ const projects: Project[] = [
   },
   {
     id: 13,
-    imagelink: "/project-images/11.png",
+    imagelink: "/project-images/13.png",
     title: "iOS App Figma Designs for Alarm Clock app",
     tech: "Figma",
     year: "10/2024",
