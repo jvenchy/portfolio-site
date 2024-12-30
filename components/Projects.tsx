@@ -117,13 +117,13 @@ const projects: Project[] = [
   },
   {
     id: 11,
-    imagelink: "/project-images/11.png",
-    title: "iOS App Figma Designs for Alarm Clock app",
+    imagelink: "/project-images/13.png",
+    title: "Figma Designs for EventBox: A Card-Based Event Application",
     tech: "Figma",
     year: "10/2024",
     description:
-      "Created Figma mockup designs for my UI/UX class in college. The app is a cute cartoon dog companion that wakes you up in the morning by making you scan your bed.",
-    githubLink: "https://github.com/jvenchy/Clark-the-alarm-clock-app",
+      "Created Figma mockup designs for a website that simplifies finding clubs for college students. Prioritized a simplistic and trendy design that resonated with college students.",
+    githubLink: "https://www.figma.com/design/1Rv1eSlyWcbNmG1p4HcKGY/Clark?node-id=1669-162202&t=DxwcgqUeOlcVwmjy-1",
   },
   {
     id: 12,
@@ -134,6 +134,16 @@ const projects: Project[] = [
     description:
       "I got the idea by remembering I had made a similar recipe finder using the Spoonacular API in XCode using Swift. This time, I wanted to create something that could be deployed to the web. This version of Ingreedy uses the same API with a different interface and web deployment through React-based Next.js.",
     githubLink: "https://github.com/jvenchy/assignment-2-ai-app-jvenchy",
+  },
+  {
+    id: 13,
+    imagelink: "/project-images/11.png",
+    title: "iOS App Figma Designs for Alarm Clock app",
+    tech: "Figma",
+    year: "10/2024",
+    description:
+      "Created Figma mockup designs for my UI/UX class in college. The app is a cute cartoon dog companion that wakes you up in the morning by making you scan your bed. Figma link provided.",
+    githubLink: "https://www.figma.com/design/1Rv1eSlyWcbNmG1p4HcKGY/Clark?node-id=1669-162202&t=DxwcgqUeOlcVwmjy-1",
   },
 
 ];
@@ -198,7 +208,7 @@ const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ pro
         className="transition-all duration-500 inline-flex items-center text-white hover:underline hover:text-theme"
       >
         <FaLink size={16} className="mr-2" />
-         View Project (Github)
+         View Project
       </a>
     </div>
   </div>
