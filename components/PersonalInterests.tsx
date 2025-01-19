@@ -4,8 +4,9 @@ export default function PersonalInterests() {
   return (
     <section id="personal-life" className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
       <div className="w-full max-w-screen-lg px-4 md:px-8">
-        <h2 className="text-7xl font-bold mb-12 text-theme text-center">🏂 Other Stuff 🏔️💿</h2>
+        <h2 className="text-5xl md:text-7xl font-bold mb-12 text-theme text-center">🏂 Other Stuff 🏔️💿</h2>
 
+        <div className = "text-sm md:text-base ml-12 mr-12">
         <p className="mb-8 font-mono text-black text-center">
           When I'm not coding, you can find me on the{' '}
           basketball court{' '}
@@ -28,6 +29,7 @@ export default function PersonalInterests() {
           </a>{' '}
           & drop a follow!
         </p>
+        </div>
       </div>
     </section>
   );

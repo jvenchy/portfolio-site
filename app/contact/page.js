@@ -14,7 +14,7 @@ export default function Contact() {
   const scrolling = useRef(false);
   const pathname = usePathname();
 
-  const sections = ["socials", "sendmail"];
+  const sections = ["socials"];
 
   // ... copy all the scrolling logic from your portfolio page ...
   // (smoothScrollTo, handleScroll, and all useEffects should be the same)
@@ -142,12 +142,9 @@ export default function Contact() {
         <section id="socials" className="min-h-screen snap-start">
             <Socials />
           </section>
-          <section id="sendmail" className="min-h-screen snap-start">
-            <SendMail />
-          </section>
         </div>
       </div>
-      <div className="fixed top-1/2 transform -translate-y-1/2 right-8 flex flex-col space-y-2 z-50">
+      {/* <div className="fixed top-1/2 transform -translate-y-1/2 right-8 flex flex-col space-y-2 z-50">
         {sections.map((section) => (
           <div
             key={section}
@@ -156,8 +153,8 @@ export default function Contact() {
             }`}
           ></div>
         ))}
-      </div>
-      <ScrollDirectionIndicator activeSection={activeSection} sections={sections} />
+      </div> */}
+      {/* <ScrollDirectionIndicator activeSection={activeSection} sections={sections} /> */}
     </main>
   );
 }

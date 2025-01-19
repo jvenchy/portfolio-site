@@ -5,17 +5,18 @@ export default function Awards() {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
       <div className="w-full max-w-screen-lg px-4">
-      <h2 className="text-7xl font-bold text-theme mb-4">Awards</h2>
+      <h2 className="text-5xl md:text-7xl font-bold text-theme mb-4">Awards</h2>
       <div className="font-mono text-black">
-        <h3 className="text-2xl font-bold mb-2">Amazon Web Services x UofT Hackathon, First Place 🏆</h3>
-        <p className="mb-4">November 29th, 2024</p>
+        <h3 className="text-lg md:text-2xl font-bold mb-2">Amazon Web Services x UofT Hackathon, First Place 🏆</h3>
+        <p className="text-xs md:text-sm mb-4">November 29th, 2024</p>
         <a href="https://hackstudentlife.ca/"><Image
           src="/hackathon-banner.png"
           alt="AWS x UofT Hackathon Award"
-          width={600}
-          height={600}
-          className="rounded-lg mb-4 transition-all duration-500 hover:scale-110"
+          width={500}
+          height={500}
+          className="rounded-lg mb-4 transition-all duration-500 hover:scale-95"
         /></a>
+        <div className="text-xs md:text-base mr-8 ml-2">
         <a href="https://devpost.com/software/eventuary" className="transition-all duration-500 text-theme hover:text-themedark hover:underline">Click Here To View Project's DevPost</a>
         <p className="mt-4">
         My teammates and I created {" "}
@@ -36,6 +37,7 @@ export default function Awards() {
         <p className="mt-4">
         As winners, we're currently in talks with UofT faculty in regards to potentially implementing Eventuary into student life!
         </p>
+        </div>
       </div>
       </div>
     </section>

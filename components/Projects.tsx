@@ -29,13 +29,12 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    imagelink: "/project-images/2.png",
-    title: "Ingredient and Diet-based Recipe Finder for MacOS",
-    tech: "Swift",
-    year: "06/2024",
-    description:
-      "Leveraged Alamofire and the Spoonacular API for recipe recommendation data, efficient networking, and API integration in a MacOS application.",
-    githubLink: "https://github.com/jvenchy/Ingreedy-Recipe-Finder-MacOS",
+    imagelink: "/project-images/6.png",
+    title: "American Sign Language Detection with ML",
+    tech: "Python, YOLOv5, PyTorch",
+    year: "08/2024",
+    description: "For this project I used YOLOv5 and PyTorch to train a custom model on a dataset of 120 images, each labeled with one of six common signs from American Sign Language (ASL). The actual training data is not provided in this github repository, but the metrics (and some images) from the most recent training run of 500 iterations is available to see in the env7 folder. Currently, the model struggles with differentiating 'Please' and 'Sorry', as well as 'Hello' and 'I Love You' to a lesser extent.",
+    githubLink: "https://github.com/jvenchy/AmericanSignLanguage-Detection-with-YOLOv5",
   },
   {
     id: 3,
@@ -68,12 +67,13 @@ const projects: Project[] = [
   },
   {
     id: 6,
-    imagelink: "/project-images/6.png",
-    title: "American Sign Language Detection with ML",
-    tech: "Python, YOLOv5, PyTorch",
-    year: "08/2024",
-    description: "For this project I used YOLOv5 and PyTorch to train a custom model on a dataset of 120 images, each labeled with one of six common signs from American Sign Language (ASL). The actual training data is not provided in this github repository, but the metrics (and some images) from the most recent training run of 500 iterations is available to see in the env7 folder. Currently, the model struggles with differentiating 'Please' and 'Sorry', as well as 'Hello' and 'I Love You' to a lesser extent.",
-    githubLink: "https://github.com/jvenchy/AmericanSignLanguage-Detection-with-YOLOv5",
+    imagelink: "/project-images/2.png",
+    title: "Ingredient and Diet-based Recipe Finder for MacOS",
+    tech: "Swift",
+    year: "06/2024",
+    description:
+      "Leveraged Alamofire and the Spoonacular API for recipe recommendation data, efficient networking, and API integration in a MacOS application.",
+    githubLink: "https://github.com/jvenchy/Ingreedy-Recipe-Finder-MacOS",
   },
   {
     id: 7,
@@ -155,20 +155,20 @@ const responsive = {
     slidesToSlide: 3,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1024, min: 640 },
     items: 2,
     slidesToSlide: 2,
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 640, min: 0 },
     items: 1,
     slidesToSlide: 1,
   },
 };
 
-const ProjectCard: React.FC<{ project: Project; onClick: (event: React.MouseEvent<HTMLDivElement>) => void }> = ({ project, onClick }) =>(
+const ProjectCard: React.FC<{ project: Project; onClick: (event: React.MouseEvent<HTMLDivElement>) => void }> = ({ project, onClick }) => (
   <div
-    className="scale-95 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-all duration-500 hover:opacity-90 hover:scale-100"
+    className="scale-95 hover:scale-90 active:scale-90 sm:scale-100 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-all duration-500 hover:opacity-90 sm:hover:scale-95 sm:active:scale-95"
     onClick={onClick}
   >
     <div className="h-72 relative">
@@ -185,7 +185,7 @@ const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ pro
   <div className="mt-10 fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div
       onClick={(e) => e.stopPropagation()}
-      className="relative bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      className="relative ml-10 mr-10 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
     >
       <button
         onClick={() => onClose()}
@@ -193,14 +193,13 @@ const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ pro
       >
         x
       </button>
-      <h2 className="text-3xl font-bold mb-4">{project.title}</h2>
-      <p className="text-lg text-gray-700 mb-2">{project.tech}</p>
-      <p className="text-md text-gray-600 mb-4">{project.year}</p>
-      <div className="mb-4 h-64 relative">
+      <h2 className="text-xl md:text-2xl font-bold mb-4">{project.title}</h2>
+      <p className="text-sm md:text-lg text-gray-700 mb-2">{project.tech}</p>
+      <p className="text-sm md:text-md text-gray-600 mb-4">{project.year}</p>
+      <div className="mb-4 h-48 md:h-64 relative">
         <Image src={project.imagelink || "/placeholder.svg"} alt={project.title} fill style={{ objectFit: "cover" }} />
-
       </div>
-      <p className="text-gray-800 mb-4">{project.description}</p>
+      <p className="text-xs md:text-sm text-gray-800 mb-4">{project.description}</p>
       <a
         href={project.githubLink}
         target="_blank"
@@ -208,7 +207,7 @@ const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ pro
         className="transition-all duration-500 inline-flex items-center text-white hover:underline hover:text-theme"
       >
         <FaLink size={16} className="mr-2" />
-         View Project
+        View Project
       </a>
     </div>
   </div>
@@ -219,25 +218,68 @@ export default function Projects() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100 py-16">
-      <h2 className="text-6xl md:text-7xl text-theme font-bold mb-12">My Projects 🛠️</h2>
+      <h2 className="text-5xl md:text-7xl text-theme font-bold mb-12">My Projects 🛠️</h2>
+
+      <style jsx global>{`
+        ${selectedProject ? `
+          .react-multi-carousel-dot-list,
+          .react-multiple-carousel__arrow {
+            display: none !important;
+          }
+        ` : ''}
+        /* Enhanced arrow styling */
+        .react-multiple-carousel__arrow {
+          background: rgba(0, 0, 0, 0.8) !important;
+          border: 2px solid white !important;
+          min-width: 45px !important;
+          min-height: 45px !important;
+          border-radius: 50% !important;
+          transition: all 0.3s ease !important;
+        }
+
+        .react-multiple-carousel__arrow:hover {
+          background: rgba(0, 0, 0, 0.9) !important;
+          transform: scale(1.1) !important;
+        }
+
+        .react-multiple-carousel__arrow::before {
+          font-size: 20px !important;
+          font-weight: bold !important;
+          color: white !important;
+        }
+
+        /* Position adjustments */
+        .react-multiple-carousel__arrow--left {
+          left: 10px !important;
+        }
+
+        .react-multiple-carousel__arrow--right {
+          right: 10px !important;
+        }
+
+        /* Optional: Add shadow for better visibility */
+        .react-multiple-carousel__arrow {
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+        }
+      `}</style>
 
       <div className="w-full max-w-7xl px-4">
-      <Carousel
-        responsive={responsive}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={5000}
-        keyBoardControl={true}
-        customTransition="all .5s"
-        transitionDuration={500}
-        containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-      >
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
-        ))}
-      </Carousel>
+        <Carousel
+          responsive={responsive}
+          infinite={true}
+          autoPlay={!selectedProject}
+          autoPlaySpeed={5000}
+          keyBoardControl={true}
+          customTransition="all .5s"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
+          ))}
+        </Carousel>
       </div>
 
       {selectedProject && <ProjectPopup project={selectedProject} onClose={() => setSelectedProject(null)} />}

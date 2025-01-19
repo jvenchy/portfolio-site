@@ -38,24 +38,24 @@ export default function Introduction() {
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setIsCursorVisible((prev) => !prev);
-    }, 300); // Blink interval
+    }, 300);
 
     return () => clearInterval(cursorInterval);
   }, []);
 
   useEffect(() => {
     if (phase === 1 && isTypingComplete) {
-      setTimeout(() => setPhase(2), 2000); // 1-second pause before next phase
+      setTimeout(() => setPhase(2), 2000);
     }
   }, [phase, isTypingComplete]);
 
   return (
     <section
       id="introduction"
-      className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-200 to-blue-200"
+      className="min-h-screen px-4 md:px-0 py-8 flex flex-col justify-center items-center bg-gradient-to-r from-green-200 to-blue-200"
     >
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/4 mt-8 md:mt-0 md:-mr-8">
+      <div className="flex flex-col items-center">
+        <div className="w-48 mb-8">
           <Image
             src="/picture.jpeg"
             alt="Josh Shergill"
@@ -64,30 +64,30 @@ export default function Introduction() {
             className="rounded-full object-cover aspect-square overflow-hidden border-4 border-white transition-all duration-500 hover:scale-90 hover:border-theme"
           />
         </div>
-        <div className="md:w-3/4">
+        <div className="text-center">
           <div className="relative">
-            <h1 className="text-7xl font-bold mb-4 text-theme flex items-center">
+            <h1 className="text-4xl md:text-7xl font-bold mb-4 md:mb-8 text-theme flex items-center justify-center">
               <span className="whitespace-nowrap">{displayText}</span>
               <span
-                className={`inline-block w-1 h-[72px] bg-theme transition-opacity duration-25 ${
+                className={`inline-block w-1 h-[48px] md:h-[72px] bg-theme transition-opacity duration-25 ${
                   isCursorVisible ? 'opacity-100' : 'opacity-0'
                 }`}
                 style={{ marginLeft: '8px', marginTop: '4px', backgroundColor: 'steelblue' }}
               />
             </h1>
           </div>
-          <p className="mb-4 font-mono text-black">
-            I'm an aspiring software engineer with a passion for full-stack web development, system architecture, and UX. 🌿
+          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text bg-gradient-to-r from-green-800 to-blue-800 ml-4 mr-4">
+              I'm an aspiring software engineer with a passion for full-stack web development, system architecture, and UX. 🌿
           </p>
-          <div className="flex flex-row space-x-4 mt-4">
+          <div className="flex flex-row justify-center space-x-4 mt-4">
             <a
               href="https://linkedin.com/in/joshshergill"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 font-bold text-theme transition-all duration-200 hover:underline"
             >
-              <FaLinkedin size="1.25rem" />
-              <span>LinkedIn</span>
+              <FaLinkedin className="text-lg md:text-xl" />
+              <span className="text-sm md:text-base">LinkedIn</span>
             </a>
             <a
               href="https://github.com/jvenchy"
@@ -95,8 +95,8 @@ export default function Introduction() {
               rel="noopener noreferrer"
               className="flex items-center space-x-2 font-bold text-theme transition-all duration-200 hover:underline"
             >
-              <FaGithub size="1.25rem" />
-              <span>GitHub</span>
+              <FaGithub className="text-lg md:text-xl" />
+              <span className="text-sm md:text-base">GitHub</span>
             </a>
           </div>
         </div>

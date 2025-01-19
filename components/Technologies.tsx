@@ -4,9 +4,9 @@ import React from 'react';
 export default function About() {
   return (
     <section id="about" className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
-      <h2 className="text-7xl font-bold text-theme mb-12">Technologies 🌴</h2>
+      <h2 className="text-5xl md:text-7xl font-bold text-theme mb-12">Technologies 🌴</h2>
         {/* Mosaic of Skill Logos */}
-        <div className="ml-12 mr-12 mb-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-6 text-theme">
+        <div className="ml-12 mr-12 mb-8 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-6 gap-6 mt-6 text-theme">
           {[
             { src: "/skills-logos/java.png", alt: "Java" },
             { src: "/skills-logos/python.png", alt: "Python" },
@@ -31,7 +31,7 @@ export default function About() {
               <img
                 src={src}
                 alt={alt}
-                className="object-contain w-full h-16 transition-all duration-200 group-hover:scale-125"
+                className="object-contain w-full h-8 md:h-8 lg:h-12 xl:h-16 transition-all duration-200 group-hover:scale-125"
               />
             </div>
           ))}

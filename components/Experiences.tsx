@@ -38,17 +38,17 @@ export default function Experiences() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
-      <h2 className="text-7xl text-theme font-bold mb-12">🏖️ My Experience</h2>
+      <h2 className="text-5xl md:text-7xl text-theme font-bold mb-12">🏖️ My Experience</h2>
       <div className="flex font-mono text-white space-x-4 overflow-x-auto pb-4">
         {experiences.map((experience) => (
           <div
             key={experience.id}
-            className="relative flex-shrink-0 w-96 h-48 bg-gradient-to-r from-green-400 to-blue-400 shadow-md rounded-lg p-4 cursor-pointer transition-all duration-500 hover:scale-95 hover:text-theme hover:shadow-lg"
+            className="relative flex-shrink w-36 h-36 md:w-48 lg:w-64 xl:w-96 md:h-64 bg-gradient-to-r from-green-400 to-blue-400 shadow-md rounded-lg p-4 cursor-pointer transition-all duration-500 hover:scale-95 hover:text-theme hover:shadow-lg"
             onClick={() => setSelectedExperience(experience)}
           >
-            <p className="text-theme italic mb-2">{experience.year}</p>
-            <h3 className="text-xl font-bold mb-2">{experience.title}</h3>
-            <p className="text-gray-700 truncate">{experience.description}</p>
+            <p className="text-theme italic mb-2 ">{experience.year}</p>
+            <h3 className="text-xl font-bold mb-2 truncate md:whitespace-normal">{experience.title}</h3>
+            <p className="text-gray-700 truncate xl:text-overflow-hidden">{experience.description}</p>
           </div>
         ))}
       </div>
