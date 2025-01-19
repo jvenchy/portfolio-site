@@ -182,7 +182,7 @@ const ProjectCard: React.FC<{ project: Project; onClick: (event: React.MouseEven
 );
 
 const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => (
-  <div className="mt-10 fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+  <div className="mt-10 fixed inset-0 bg-black bg-opacity-85 flex justify-center items-center z-50">
     <div
       onClick={(e) => e.stopPropagation()}
       className="relative ml-10 mr-10 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"

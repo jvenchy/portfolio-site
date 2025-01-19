@@ -40,7 +40,7 @@ export default function Resume() {
         </div>
       </div>
 
-      <div className="fixed top-1/2 transform -translate-y-1/2 right-8 flex flex-col space-y-2 z-50">
+      {/* <div className="fixed top-1/2 transform -translate-y-1/2 right-8 flex flex-col space-y-2 z-50">
         {sections.map((section) => (
           <div
             key={section}
@@ -49,7 +49,7 @@ export default function Resume() {
             }`}
           ></div>
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }
