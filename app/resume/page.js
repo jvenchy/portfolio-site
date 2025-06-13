@@ -8,7 +8,7 @@ export default function Resume() {
   const [activeSection, setActiveSection] = useState("resume");
   const sections = ["resume"];
   return (
-    <main className="min-h-screen bg-gradient-to-r from-green-200 to-blue-200">
+    <main className="min-h-screen bg-black">
       <Navbar />
       <div className="pt-16 container mx-auto px-4">
         {/* Download Link */}
@@ -33,7 +33,7 @@ export default function Resume() {
           <a 
             href="/resume.pdf" 
             download
-            className="text-xl font-mono text-black hover:text-themedark hover:underline transition-colors"
+            className="text-xl font-mono text-white hover:text-themedark hover:underline transition-colors"
           >
             Alternate Download Link
           </a>

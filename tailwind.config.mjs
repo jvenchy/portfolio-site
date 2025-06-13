@@ -9,12 +9,14 @@ export default {
     extend: {
       fontFamily: {
         gotham: ['"Gotham Black"', 'Arial', 'sans-serif'],
+        helvetica: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'], // Override default sans
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        theme: "#0B9173",
-        themedark: "#0CC7C0",
+        theme: "#6093D4",
+        themedark: "#6093D4",
       },
       keyframes: {
         'cursor-blink': {

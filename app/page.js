@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Introduction from '../components/Introduction';
 import Awards from "../components/Awards";
 import Projects from "../components/Projects";
@@ -10,73 +10,13 @@ import About from '../components/About';
 import PersonalInterests from '../components/PersonalInterests';
 import Navbar from "../components/Navbar";
 import ScrollDirectionIndicator from '../components/Scroll';
+import Aurora from '@/components/Aurora';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("introduction");
-  const scrollTimeout = useRef(null);
-  const scrolling = useRef(false);
 
   // Make sure these IDs exactly match the section IDs in your JSX
-  const sections = ["introduction", "about", "projects", "awards", "experiences", "technologies",  "personal-life"];
-
-  const smoothScrollTo = (element, duration = 800) => {
-    if (!element) return;
-
-    const start = window.pageYOffset;
-    const target = element.getBoundingClientRect().top + start;
-    const startTime = performance.now();
-
-    const scroll = (currentTime) => {
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-
-      const ease = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
-
-      window.scrollTo(0, start + (target - start) * ease(progress));
-
-      if (progress < 1) {
-        requestAnimationFrame(scroll);
-      } else {
-        setTimeout(() => {
-          scrolling.current = false;
-        }, 100);
-      }
-    };
-
-    requestAnimationFrame(scroll);
-  };
-
-  const handleScroll = () => {
-    if (scrolling.current) return;
-
-    if (scrollTimeout.current) {
-      clearTimeout(scrollTimeout.current);
-    }
-
-    scrollTimeout.current = setTimeout(() => {
-      let closestSection = null;
-      let minDistance = Infinity;
-
-      sections.forEach((sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const distance = Math.abs(rect.top);
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestSection = sectionId;
-          }
-        }
-      });
-
-      if (closestSection && closestSection !== activeSection) {
-        scrolling.current = true;
-        const targetElement = document.getElementById(closestSection);
-        smoothScrollTo(targetElement);
-        setActiveSection(closestSection);
-      }
-    }, 150);
-  };
+  const sections = ["introduction", "about", "projects", "awards", "experiences", "technologies", "personal-life"];
 
   useEffect(() => {
     const observerOptions = {
@@ -87,7 +27,7 @@ export default function Home() {
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !scrolling.current) {
+        if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
         }
       });
@@ -103,43 +43,48 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current);
-      }
-    };
-  }, [activeSection]);
-
   return (
-    <main className="relative h-screen overflow-y-auto snap-y snap-mandatory">
-      <Navbar />
-      <div className="relative h-screen">
-        <section id="introduction" className="h-screen snap-start">
-          <Introduction />
-        </section>
-        <section id="about" className="h-screen snap-start">
-          <About />
-        </section>
-        <section id="projects" className="h-screen snap-start">
-          <Projects />
-        </section>
-        <section id="awards" className="h-screen snap-start">
-          <Awards />
-        </section>
-        <section id="experiences" className="h-screen snap-start">
-          <Experiences />
-        </section>
-        <section id="technologies" className="h-screen snap-start">
-          <Technologies />
-        </section>
-        <section id="personal-life" className="h-screen snap-start">
-          <PersonalInterests />
-        </section>
+    <main className="relative">
+      {/* Fixed Aurora Background for entire page */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
+        <Aurora 
+          colorStops={["#5227FF", "#7cff67", "#5227FF"]}
+          amplitude={1.2}
+          blend={0.3}
+          speed={0.8}
+        />
       </div>
-      <div className="fixed top-1/4 transform -translate-y-1/2 right-2 xl:right-8 flex flex-col space-y-2 z-50">
+
+      {/* All content with relative positioning to appear above aurora */}
+      <div className="relative z-10">
+        <Navbar />
+        <div className="relative">
+          <section id="introduction" className="h-screen">
+            <Introduction />
+          </section>
+          <section id="about" className="h-screen">
+            <About />
+          </section>
+          <section id="projects" className="h-screen">
+            <Projects />
+          </section>
+          <section id="awards" className="h-screen">
+            <Awards />
+          </section>
+          <section id="experiences" className="h-screen">
+            <Experiences />
+          </section>
+          <section id="technologies" className="h-screen">
+            <Technologies />
+          </section>
+          <section id="personal-life" className="h-screen">
+            <PersonalInterests />
+          </section>
+        </div>
+      </div>
+
+      {/* Section indicators */}
+      <div className="fixed bottom-2/3 right-2 xl:right-8 flex flex-col space-y-2 z-50">
         {sections.map((section) => (
           <div
             key={section}
@@ -149,7 +94,7 @@ export default function Home() {
           ></div>
         ))}
       </div>
-      <ScrollDirectionIndicator activeSection={activeSection} sections={sections} />
+      {/* <ScrollDirectionIndicator activeSection={activeSection} sections={sections} /> */}
     </main>
   );
 }

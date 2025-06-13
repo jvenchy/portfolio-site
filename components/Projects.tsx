@@ -5,6 +5,8 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { FaLink } from 'react-icons/fa';
 import Image from 'next/image';
+import BlurText from './BlurText';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 type Project = {
   id: number;
@@ -182,7 +184,7 @@ const ProjectCard: React.FC<{ project: Project; onClick: (event: React.MouseEven
 );
 
 const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => (
-  <div className="mt-10 fixed inset-0 bg-black bg-opacity-85 flex justify-center items-center z-50">
+  <div className="mt-10 fixed inset-0 bg-opacity-85 flex justify-center items-center z-50">
     <div
       onClick={(e) => e.stopPropagation()}
       className="relative ml-10 mr-10 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
@@ -215,74 +217,87 @@ const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ pro
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [titleRef, titleVisible] = useScrollAnimation();
+  const [carouselRef, carouselVisible] = useScrollAnimation();
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100 py-16">
-      <h2 className="text-5xl md:text-7xl text-theme font-bold mb-12">My Projects 🛠️</h2>
+    <section className="min-h-screen flex flex-col justify-center items-center py-16">
+      <div className="w-full max-w-screen-lg px-4">
+        <div className="font-helvetica tracking-tighter" ref={titleRef}>
+          {titleVisible && (
+            <BlurText
+              text="PROJECTS"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-5xl md:text-7xl text-white font-bold mb-12"
+            />
+          )}
+        </div>
 
-      <style jsx global>{`
-        ${selectedProject ? `
-          .react-multi-carousel-dot-list,
+        {/* Keep all existing carousel styling */}
+        <style jsx global>{`
+          ${selectedProject ? `
+            .react-multi-carousel-dot-list,
+            .react-multiple-carousel__arrow {
+              display: none !important;
+            }
+          ` : ''}
           .react-multiple-carousel__arrow {
-            display: none !important;
+            background: rgba(0, 0, 0, 0.8) !important;
+            border: 2px solid white !important;
+            min-width: 45px !important;
+            min-height: 45px !important;
+            border-radius: 50% !important;
+            transition: all 0.3s ease !important;
           }
-        ` : ''}
-        /* Enhanced arrow styling */
-        .react-multiple-carousel__arrow {
-          background: rgba(0, 0, 0, 0.8) !important;
-          border: 2px solid white !important;
-          min-width: 45px !important;
-          min-height: 45px !important;
-          border-radius: 50% !important;
-          transition: all 0.3s ease !important;
-        }
+          .react-multiple-carousel__arrow:hover {
+            background: rgba(0, 0, 0, 0.9) !important;
+            transform: scale(1.1) !important;
+          }
+          .react-multiple-carousel__arrow::before {
+            font-size: 20px !important;
+            font-weight: bold !important;
+            color: white !important;
+          }
+          .react-multiple-carousel__arrow--left {
+            left: 10px !important;
+          }
+          .react-multiple-carousel__arrow--right {
+            right: 10px !important;
+          }
+          .react-multiple-carousel__arrow {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+          }
+        `}</style>
 
-        .react-multiple-carousel__arrow:hover {
-          background: rgba(0, 0, 0, 0.9) !important;
-          transform: scale(1.1) !important;
-        }
+        <div ref={carouselRef} className="w-full max-w-7xl px-4" style={{
+          opacity: carouselVisible ? 1 : 0,
+          transform: carouselVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'all 0.8s ease-out 0.2s'
+        }}>
+          {carouselVisible && (
+            <Carousel
+              responsive={responsive}
+              infinite={true}
+              autoPlay={!selectedProject}
+              autoPlaySpeed={5000}
+              keyBoardControl={true}
+              customTransition="all .5s"
+              transitionDuration={500}
+              containerClass="carousel-container"
+              dotListClass="custom-dot-list-style"
+              itemClass="carousel-item-padding-40-px"
+            >
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
+              ))}
+            </Carousel>
+          )}
+        </div>
 
-        .react-multiple-carousel__arrow::before {
-          font-size: 20px !important;
-          font-weight: bold !important;
-          color: white !important;
-        }
-
-        /* Position adjustments */
-        .react-multiple-carousel__arrow--left {
-          left: 10px !important;
-        }
-
-        .react-multiple-carousel__arrow--right {
-          right: 10px !important;
-        }
-
-        /* Optional: Add shadow for better visibility */
-        .react-multiple-carousel__arrow {
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-        }
-      `}</style>
-
-      <div className="w-full max-w-7xl px-4">
-        <Carousel
-          responsive={responsive}
-          infinite={true}
-          autoPlay={!selectedProject}
-          autoPlaySpeed={5000}
-          keyBoardControl={true}
-          customTransition="all .5s"
-          transitionDuration={500}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
-        >
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
-          ))}
-        </Carousel>
+        {selectedProject && <ProjectPopup project={selectedProject} onClose={() => setSelectedProject(null)} />}
       </div>
-
-      {selectedProject && <ProjectPopup project={selectedProject} onClose={() => setSelectedProject(null)} />}
     </section>
   );
 }

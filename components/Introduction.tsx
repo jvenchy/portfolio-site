@@ -1,60 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
-
-const useTypewriter = (text, speed = 100) => {
-  const [displayText, setDisplayText] = useState('');
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-
-  useEffect(() => {
-    let currentIndex = 0;
-    setDisplayText('');
-    setIsTypingComplete(false);
-
-    const intervalId = setInterval(() => {
-      if (currentIndex < text.length) {
-        setDisplayText(text.slice(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        setIsTypingComplete(true);
-        clearInterval(intervalId);
-      }
-    }, speed);
-
-    return () => clearInterval(intervalId);
-  }, [text, speed]);
-
-  return [displayText, isTypingComplete];
-};
+import BlurText from "./BlurText";
 
 export default function Introduction() {
   const [phase, setPhase] = useState(1);
-  const [displayText, isTypingComplete] = useTypewriter(
-    phase === 1 ? "Hi there!" : "My Name's Josh.",
-    25
-  );
-  const [isCursorVisible, setIsCursorVisible] = useState(true);
+  const [showSecondText, setShowSecondText] = useState(false);
 
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setIsCursorVisible((prev) => !prev);
-    }, 300);
+  const handleFirstAnimationComplete = () => {
+    console.log('First animation completed!');
+    setTimeout(() => {
+      setPhase(2);
+      setShowSecondText(true);
+    }, 2000);
+  };
 
-    return () => clearInterval(cursorInterval);
-  }, []);
-
-  useEffect(() => {
-    if (phase === 1 && isTypingComplete) {
-      setTimeout(() => setPhase(2), 2000);
-    }
-  }, [phase, isTypingComplete]);
+  const handleSecondAnimationComplete = () => {
+    console.log('Second animation completed!');
+  };
 
   return (
     <section
       id="introduction"
-      className="min-h-screen px-4 md:px-0 py-8 flex flex-col justify-center items-center bg-gradient-to-r from-green-200 to-blue-200"
+      className="min-h-screen px-4 md:px-0 py-8 flex flex-col justify-center items-center relative overflow-hidden"
     >
-      <div className="flex flex-col items-center">
+      {/* Content Layer - Aurora is now handled at page level */}
+      <div className="flex flex-col items-center relative z-10">
         <div className="w-48 mb-8">
           <Image
             src="/picture.jpeg"
@@ -66,20 +37,33 @@ export default function Introduction() {
         </div>
         <div className="text-center">
           <div className="relative">
-            <h1 className="text-4xl md:text-7xl font-bold mb-4 md:mb-8 text-theme flex items-center justify-center">
-              <span className="whitespace-nowrap">{displayText}</span>
-              <span
-                className={`inline-block w-1 h-[48px] md:h-[72px] bg-theme transition-opacity duration-25 ${
-                  isCursorVisible ? 'opacity-100' : 'opacity-0'
-                }`}
-                style={{ marginLeft: '8px', marginTop: '4px', backgroundColor: 'steelblue' }}
-              />
+            <h1 className="text-4xl md:text-7xl font-helvetica tracking-tighter mb-4 md:mb-8 text-theme flex items-center justify-center">
+              {phase === 1 && (
+                <BlurText
+                  text="Hi There."
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  onAnimationComplete={handleFirstAnimationComplete}
+                  className="text-4xl md:text-7xl font-bold text-white"
+                />
+              )}
+              {phase === 2 && showSecondText && (
+                <BlurText
+                  text="My Name's Josh."
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  onAnimationComplete={handleSecondAnimationComplete}
+                  className="text-4xl md:text-7xl font-bold text-white"
+                />
+              )}
             </h1>
           </div>
-          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text bg-gradient-to-r from-green-800 to-blue-800 ml-4 mr-4">
-              I'm an aspiring software engineer with a passion for full-stack web development, system architecture, and UX. 🌿
+          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text text-white bg-black">
+              I'm an aspiring software engineer with a passion for full-stack web development, system architecture, and UX.
           </p>
-          <div className="flex flex-row justify-center space-x-4 mt-4">
+          <div className="flex flex-row justify-center font-helvetica tracking-tighter space-x-4 mt-4">
             <a
               href="https://linkedin.com/in/joshshergill"
               target="_blank"

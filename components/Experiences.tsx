@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import BlurText from './BlurText';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 type Experience = {
   id: number;
@@ -35,16 +37,35 @@ const experiences: Experience[] = [
 
 export default function Experiences() {
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
+  const [titleRef, titleVisible] = useScrollAnimation();
+  const [contentRef, contentVisible] = useScrollAnimation();
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-green-100 to-blue-100">
-      <h2 className="text-5xl md:text-7xl text-theme font-bold mb-12">My Experience</h2>
-      <div className="flex flex-col space-y-4 font-mono text-white overflow-x-auto pb-4 ml-16 mr-16">
-        {experiences.map((experience) => (
+    <section className="min-h-screen flex flex-col justify-center items-center">
+      <div className="w-full max-w-screen-lg px-4">
+      <div className="font-helvetica tracking-tighter" ref={titleRef}>
+        {titleVisible && (
+          <BlurText
+            text="EXPERIENCE"
+            delay={100}
+            animateBy="words"
+            direction="top"
+            className="text-5xl md:text-7xl text-white font-bold mb-12"
+          />
+        )}
+      </div>
+      <div ref={contentRef} className="flex flex-col space-y-4 font-mono text-white overflow-x-auto pb-4 ml-16 mr-16">
+        {contentVisible && experiences.map((experience, index) => (
           <div
             key={experience.id}
-            className="relative w-full bg-gradient-to-r from-green-400 to-blue-400 shadow-md rounded-lg p-4 cursor-pointer transition-all duration-500 hover:scale-95 hover:text-theme hover:shadow-lg"
+            className="relative w-full bg-white text-black shadow-md rounded-lg p-4 cursor-pointer transition-all duration-500 hover:scale-95 hover:text-theme hover:shadow-lg"
             onClick={() => setSelectedExperience(experience)}
+            style={{ 
+              animationDelay: `${index * 200}ms`, 
+              opacity: contentVisible ? 1 : 0,
+              transform: contentVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'all 0.6s ease-out'
+            }}
           >
             <p className="text-sm text-theme italic mb-2">{experience.year}</p>
             <h3 className="text-lg font-bold mb-2 line-clamp-1">{experience.title}</h3>
@@ -53,15 +74,15 @@ export default function Experiences() {
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Modal remains the same */}
       {selectedExperience && (
         <div
           onClick={() => setSelectedExperience(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center text-black bg-black bg-opacity-85 transition-opacity duration-500 ease-in-out"
+          className="fixed inset-0 z-50 flex items-center justify-center text-theme bg-white bg-opacity-85 transition-opacity duration-500 ease-in-out"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-gradient-to-r from-green-200 to-blue-200 text-black font-mono rounded-lg shadow-lg p-6 w-full max-w-md transition-transform duration-500 ease-in-out transform scale-95"
+            className="bg-black text-theme font-mono rounded-lg shadow-lg p-6 w-full max-w-md transition-transform duration-500 ease-in-out transform scale-95"
           >
             <button
               onClick={() => setSelectedExperience(null)}
@@ -75,6 +96,7 @@ export default function Experiences() {
           </div>
         </div>
       )}
+      </div>
     </section>
   );
 }
