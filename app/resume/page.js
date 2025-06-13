@@ -8,7 +8,7 @@ export default function Resume() {
   const [activeSection, setActiveSection] = useState("resume");
   const sections = ["resume"];
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-[#0a0a0a]">
       <Navbar />
       <div className="pt-16 container mx-auto px-4">
         {/* Download Link */}

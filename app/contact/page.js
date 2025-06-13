@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar";
 
 export default function Contact() {
   return (
-    <main className="relative">
+    <main className="relative bg-[#0a0a0a]">
       <Navbar />
       <div className="pt-16">
         <section id="socials" className="min-h-screen">
