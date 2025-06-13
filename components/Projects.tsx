@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { FaLink } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaCalendarAlt, FaCode } from 'react-icons/fa';
 import Image from 'next/image';
 import BlurText from './BlurText';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -13,21 +11,44 @@ type Project = {
   tech: string;
   title: string;
   year: string;
-  imagelink: string; // images will be in public/projectImages/
+  imagelink: string;
   description: string;
   githubLink: string;
+  featured?: boolean;
 };
 
 const projects: Project[] = [
+  {
+    id: 14,
+    imagelink: "/project-images/14.png",
+    title: "Campus Event Discovery Platform",
+    tech: "Next.js, React, Tailwind, Docker, SQLite",
+    year: "1/2025 - Present",
+    description:
+      "This is Camel. I engineered a machine learning recommendation engine with TF-IDF vectorization and category-aware similarity scoring, featuring real-time preference learning from user interactions, achieving average accuracy of 92%. I also implemented secure JWT authentication, account personalization, and calendar integration to create the perfect solution to finding campus events - one that can currently serve 10,000+ university students. I automated a data pipeline using Selenium, Apify and Gemini API for scraping and enriching 200+ events daily.",
+    githubLink: "https://saycamel.com",
+    featured: true,
+  },
+  {
+    id: 15,
+    imagelink: "/project-images/15.png",
+    title: "Stopwatch-Powered Pay Logger",
+    tech: "Swift",
+    year: "3/2025",
+    description:
+    "I was working as a contract developer and needed a good way to log my time and know how much I was making at the same time. A MacOS application, it uses local memory to track and store your payouts even after closing out of the app - no more spreadsheets! Low CPU usage: less than the native stopwatch app! Set your own pay rate. Swap between USD and CAD currencies using an API. Great motivator to keep working",
+    githubLink: "https://github.com/jvenchy/MoneyWatch",
+    featured: true,
+  },
   {
     id: 1,
     imagelink: "/project-images/1.png",
     title: "Social Media & Code Execution Platform",
     tech: "Next.js, React, Tailwind, Docker, SQLite",
     year: "10/2024",
-    description:
-      "Implemented real-time code execution across various languages, saving and viewing code snippets, creating blog posts with code templates, account creation, and commenting and voting on posts, all using a Monorepo strategy. All done through custom API endpoints for each individual task. Then, created responsive and dynamic front-end with dark mode capabilities and an engaging yet simplistic interface. See more on the Github.",
+    description: "Implemented real-time code execution across various languages, saving and viewing code snippets, creating blog posts with code templates, account creation, and commenting and voting on posts, all using a Monorepo strategy. All done through custom API endpoints for each individual task. Then, created responsive and dynamic front-end with dark mode capabilities and an engaging yet simplistic interface.",
     githubLink: "https://github.com/jvenchy/scriptorium",
+    featured: true,
   },
   {
     id: 2,
@@ -35,8 +56,9 @@ const projects: Project[] = [
     title: "American Sign Language Detection with ML",
     tech: "Python, YOLOv5, PyTorch",
     year: "08/2024",
-    description: "For this project I used YOLOv5 and PyTorch to train a custom model on a dataset of 120 images, each labeled with one of six common signs from American Sign Language (ASL). The actual training data is not provided in this github repository, but the metrics (and some images) from the most recent training run of 500 iterations is available to see in the env7 folder. Currently, the model struggles with differentiating 'Please' and 'Sorry', as well as 'Hello' and 'I Love You' to a lesser extent.",
+    description: "Used YOLOv5 and PyTorch to train a custom model on a dataset of 120 images, each labeled with one of six common signs from American Sign Language (ASL). The model achieved high accuracy in sign recognition with comprehensive training metrics available.",
     githubLink: "https://github.com/jvenchy/AmericanSignLanguage-Detection-with-YOLOv5",
+    featured: true,
   },
   {
     id: 3,
@@ -45,8 +67,9 @@ const projects: Project[] = [
     tech: "React, TypeScript, Google Firebase",
     year: "09/2024",
     description:
-      "As a part of my internship, I worked on BalanceAI: a web-based literacy assessment platform for grade 1-6 students that utilizes AI in assessing oral production, reading, and writing skills. This project is for the Research lab at the Department of Applied Psychology & Human Development in OISE. Since BalanceAI is an existing web-based product, we built over it by adding a gamification component, improving the website robustness and data handling, and enhanced the user interface.",
+      "Web-based literacy assessment platform for grade 1-6 students that utilizes AI in assessing oral production, reading, and writing skills. Built for the Research lab at the Department of Applied Psychology & Human Development in OISE.",
     githubLink: "https://balanceai.ca",
+    featured: true,
   },
   {
     id: 4,
@@ -55,8 +78,8 @@ const projects: Project[] = [
     tech: "Objective-C",
     year: "01/2024",
     description:
-      " Implemented interactive and scriptable shell functionalities, allowing for command line arguments and stdin/stdout/stderr interactions. Enabled the execution of executables through system calls such as `fork`, `exec`, and `wait`, ensuring compatibility with commands like `cd`, `ls`, `mkdir` and others. Incorporated advanced features like custom `PATH` handling, variable assignments, and processing of commands from script files",
-    githubLink: "hhttps://github.com/jvenchy/cscshell",
+      "Implemented interactive and scriptable shell functionalities, allowing for command line arguments and stdin/stdout/stderr interactions. Enabled execution of executables through system calls such as fork, exec, and wait.",
+    githubLink: "https://github.com/jvenchy/cscshell",
   },
   {
     id: 5,
@@ -64,7 +87,7 @@ const projects: Project[] = [
     title: "Eventuary: Personalized Events for UofT students",
     tech: "React, Next.js, JavaScript, AWS",
     year: "11/2024",
-    description: "Hackathon Project. See https://devpost.com/software/eventuary or the Awards section for more info",
+    description: "Hackathon winning project that creates personalized event recommendations for University of Toronto students. Features intelligent matching and seamless event discovery.",
     githubLink: "https://github.com/jvenchy/eventuary",
   },
   {
@@ -84,7 +107,7 @@ const projects: Project[] = [
     tech: "Java",
     year: "2021",
     description:
-      "The project focuses on accurately classifying cell clumps as either malignant or benign based on their features. I developed a breast cancer classifier using the kNN algorithm. Key Features: Distance calculation between data points. Nearest neighbor search to find K closest neighbors. Classification of instances as benign (2) or malignant (4) based on neighbor labels. Accuracy calculation and result presentation. Visualization of distances between training data instances.",
+      "Developed a breast cancer classifier using the kNN algorithm to accurately classify cell clumps as either malignant or benign based on their features with comprehensive accuracy metrics.",
     githubLink: "https://github.com/jvenchy/breast-cancer-classifier",
   },
   {
@@ -94,7 +117,7 @@ const projects: Project[] = [
     tech: "Java, JSwing",
     year: "10/2023",
     description:
-      "Engineered a comprehensive software for Pokémon card enthusiasts, integrating collection, deck building, and trading functionalities. Proficiently used the Git terminal, merged and pulled branch requests, and performed code reviews on Github. Utilized API calls for obtaining and using a database of over 15,000 cards. Emphasized Clean Architecture and SOLID to create a robust and scalable design, iterated on and resolved design with UofT professor consultations.",
+      "Comprehensive software for Pokémon card enthusiasts, integrating collection, deck building, and trading functionalities. Utilized API calls for a database of over 15,000 cards with Clean Architecture principles.",
     githubLink: "https://github.com/jvenchy/Pokemon-Battle-Simulator",
   },
   {
@@ -104,7 +127,7 @@ const projects: Project[] = [
     tech: "Swift",
     year: "07/2024",
     description:
-      "Simple map routing application. Enter source and destination coordinates and see distance and time between them based on different transportation types: driving, walking, and even biking.",
+      "Map routing application with source and destination coordinate input, calculating distance and time between locations for different transportation types: driving, walking, and biking.",
     githubLink: "https://github.com/jvenchy/map-router-with-swift",
   },
   {
@@ -114,27 +137,17 @@ const projects: Project[] = [
     tech: "Python, Flask",
     year: "08/2024",
     description:
-      "Coded using the Flask web framework for Python. Also used Numpy, SciKit, and Pillow. Used the K-Means algorithm for determining dominant color.",
+      "Web application using Flask framework with Numpy, SciKit, and Pillow libraries. Implements K-Means algorithm for determining dominant colors in uploaded images.",
     githubLink: "https://github.com/jvenchy/Dominant-Color-Extraction-Flask-Python",
-  },
-  {
-    id: 11,
-    imagelink: "/project-images/11.png",
-    title: "Figma Designs for EventBox: A Card-Based Event Application",
-    tech: "Figma",
-    year: "10/2024",
-    description:
-      "Created Figma mockup designs for a website that simplifies finding clubs for college students. Prioritized a simplistic and trendy design that resonated with college students.",
-    githubLink: "https://www.figma.com/design/WE0JkxXU8rQZSYgqMCmKAU/eventPill?node-id=0-1&p=f&t=k7ft0ZQ1ny4zkiT6-0",
   },
   {
     id: 12,
     imagelink: "/project-images/12.png",
-    title: "Web-Based Ingredient and Diet-based Recipe Finder",
+    title: "Web-Based Recipe Finder",
     tech: "React, Tailwind, Next.js",
     year: "11/2024",
     description:
-      "I got the idea by remembering I had made a similar recipe finder using the Spoonacular API in XCode using Swift. This time, I wanted to create something that could be deployed to the web. This version of Ingreedy uses the same API with a different interface and web deployment through React-based Next.js.",
+      "Web-deployed version of the recipe finder using Spoonacular API with React-based Next.js, featuring ingredient-based recipe discovery and dietary filtering.",
     githubLink: "https://github.com/jvenchy/assignment-2-ai-app-jvenchy",
   },
   {
@@ -144,159 +157,309 @@ const projects: Project[] = [
     tech: "Figma",
     year: "10/2024",
     description:
-      "Created Figma mockup designs for my UI/UX class in college. The app is a cute cartoon dog companion that wakes you up in the morning by making you scan your bed. Figma link provided.",
+      "UI/UX designs for a cute cartoon dog companion alarm app that wakes users by making them scan their bed. Created comprehensive user flow and interaction designs.",
     githubLink: "https://www.figma.com/design/1Rv1eSlyWcbNmG1p4HcKGY/Clark?node-id=1669-162202&t=DxwcgqUeOlcVwmjy-1",
   },
-
 ];
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 640 },
-    items: 2,
-    slidesToSlide: 2,
-  },
-  mobile: {
-    breakpoint: { max: 640, min: 0 },
-    items: 1,
-    slidesToSlide: 1,
-  },
+const ProjectCard: React.FC<{ 
+  project: Project; 
+  onClick: () => void;
+  index: number;
+  isVisible: boolean;
+}> = ({ project, onClick, index, isVisible }) => {
+  return (
+    <div
+      className={`group relative font-helvetica tracking-tighter backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] hover:-translate-y-2 ${
+        project.featured ? 'ring-2 ring-purple-500/30' : ''
+      }`}
+      onClick={onClick}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
+        transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
+      }}
+    >
+      {/* {project.featured && (
+        <div className="absolute top-4 right-4 z-10">
+          <div className="px-3 py-1 bg-gradient-to-r from-purple-500 to-orange-500 text-white text-xs font-bold rounded-full">
+            FEATURED
+          </div>
+        </div>
+      )} */}
+      
+      <div className="relative h-48 overflow-hidden">
+        <Image 
+          src={project.imagelink || "/placeholder.svg"} 
+          alt={project.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
+        {/* Hover overlay with tech stack */}
+        <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+          <div className="flex items-center space-x-2 text-white">
+            <FaCode className="text-sm" />
+            <span className="text-sm font-mono truncate">{project.tech}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors duration-300 line-clamp-2">
+            {project.title}
+          </h3>
+        </div>
+        
+        <div className="flex items-center space-x-2 text-gray-400 text-sm mb-3">
+          <FaCalendarAlt className="text-xs" />
+          <span>{project.year}</span>
+        </div>
+        
+        <p className="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+          {project.description}
+        </p>
+        
+        {/* Animated bottom border */}
+        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-orange-500 group-hover:w-full transition-all duration-700" />
+      </div>
+    </div>
+  );
 };
 
-const ProjectCard: React.FC<{ project: Project; onClick: (event: React.MouseEvent<HTMLDivElement>) => void }> = ({ project, onClick }) => (
-  <div
-    className="scale-95 hover:scale-90 active:scale-90 sm:scale-100 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition-all duration-500 hover:opacity-90 sm:hover:scale-95 sm:active:scale-95"
-    onClick={onClick}
-  >
-    <div className="h-72 relative">
-      <Image src={project.imagelink || "/placeholder.svg"} alt={project.title} layout="fill" objectFit="cover" />
-    </div>
-    <div className="p-4">
-      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-      <p className="text-sm text-gray-600">{project.tech}</p>
-    </div>
-  </div>
-);
+const ProjectModal: React.FC<{ 
+  project: Project; 
+  onClose: () => void;
+  isOpen: boolean;
+}> = ({ project, onClose, isOpen }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
-const ProjectPopup: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => (
-  <div className="mt-10 fixed inset-0 bg-opacity-85 flex justify-center items-center z-50">
-    <div
-      onClick={(e) => e.stopPropagation()}
-      className="relative ml-10 mr-10 bg-gradient-to-r from-green-400 to-blue-400 text-white font-mono rounded-lg p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-    >
-      <button
-        onClick={() => onClose()}
-        className="absolute top-4 right-4 mb-4 px-3 py-1 bg-red-400 text-white transition-all duration-300 rounded-full hover:bg-red-500"
-      >
-        x
-      </button>
-      <h2 className="text-xl md:text-2xl font-bold mb-4">{project.title}</h2>
-      <p className="text-sm md:text-lg text-gray-700 mb-2">{project.tech}</p>
-      <p className="text-sm md:text-md text-gray-600 mb-4">{project.year}</p>
-      <div className="mb-4 h-48 md:h-64 relative">
-        <Image src={project.imagelink || "/placeholder.svg"} alt={project.title} fill style={{ objectFit: "cover" }} />
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 font-helvetica tracking-tighter ">
+      {/* Backdrop */}
+      <div 
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300"
+        onClick={onClose}
+      />
+      
+      {/* Modal */}
+      <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-500 slide-in-from-bottom-10">
+        <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
+          {/* Header */}
+          <div className="relative h-80">
+            <Image 
+              src={project.imagelink || "/placeholder.svg"} 
+              alt={project.title}
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            
+            {/* Close button */}
+            <button
+              onClick={onClose}
+              className="absolute top-6 right-6 p-3 backdrop-blur-md bg-black/30 hover:bg-black/50 border border-white/20 rounded-full text-white hover:text-red-400 transition-all duration-300 group"
+            >
+              <FaTimes className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+            </button>
+            
+            {/* {project.featured && (
+              <div className="absolute top-6 left-6">
+                <div className="px-4 py-2 bg-gradient-to-r from-purple-500 to-orange-500 text-white text-sm font-bold rounded-full">
+                  FEATURED PROJECT
+                </div>
+              </div>
+            )} */}
+            
+            <div className="absolute bottom-6 left-6 right-6">
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+                {project.title}
+              </h1>
+              <div className="flex items-center space-x-4 text-gray-200">
+                <div className="flex items-center space-x-2">
+                  <FaCalendarAlt className="text-sm" />
+                  <span>{project.year}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <FaCode className="text-sm" />
+                  <span className="font-mono text-sm">{project.tech}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Content */}
+          <div className="p-8">
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-xl font-bold text-white mb-4">About This Project</h2>
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  {project.description}
+                </p>
+              </div>
+              
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-orange-600 hover:from-purple-700 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                >
+                  <FaGithub className="text-lg group-hover:rotate-12 transition-transform duration-300" />
+                  <span>View on GitHub</span>
+                  <FaExternalLinkAlt className="text-sm opacity-70" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="text-xs md:text-sm text-gray-800 mb-4">{project.description}</p>
-      <a
-        href={project.githubLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="transition-all duration-500 inline-flex items-center text-white hover:underline hover:text-theme"
-      >
-        <FaLink size={16} className="mr-2" />
-        View Project
-      </a>
     </div>
-  </div>
-);
+  );
+};
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [titleRef, titleVisible] = useScrollAnimation();
-  const [carouselRef, carouselVisible] = useScrollAnimation();
+  const [gridRef, gridVisible] = useScrollAnimation();
+  const [filter, setFilter] = useState<'all' | 'featured'>('all');
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const filteredProjects = filter === 'featured' 
+    ? projects.filter(p => p.featured)
+    : projects;
+
+  // Dynamic projects per page based on screen size
+  const [projectsPerPage, setProjectsPerPage] = useState(6);
+  
+  useEffect(() => {
+    const updateProjectsPerPage = () => {
+      if (window.innerWidth < 640) {
+        setProjectsPerPage(2); // Mobile: 2 rows × 1 column = 2 projects
+      } else if (window.innerWidth < 1024) {
+        setProjectsPerPage(4); // Tablet: 2 rows × 2 columns = 4 projects
+      } else {
+        setProjectsPerPage(6); // Desktop: 2 rows × 3 columns = 6 projects
+      }
+    };
+
+    updateProjectsPerPage();
+    window.addEventListener('resize', updateProjectsPerPage);
+    return () => window.removeEventListener('resize', updateProjectsPerPage);
+  }, []);
+
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const currentProjects = filteredProjects.slice(
+    currentPage * projectsPerPage,
+    (currentPage + 1) * projectsPerPage
+  );
+
+  // Reset to first page when filter changes
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [filter]);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center py-16">
-      <div className="w-full max-w-screen-lg px-4">
-        <div className="font-helvetica tracking-tighter" ref={titleRef}>
+    <section className="min-h-screen flex flex-col justify-center py-20">
+      <div className="w-full max-w-7xl font-helvetica tracking-tighter mx-auto px-6">
+        {/* Title */}
+        <div className="text-center" ref={titleRef}>
           {titleVisible && (
             <BlurText
               text="PROJECTS"
               delay={100}
               animateBy="words"
               direction="top"
-              className="text-5xl md:text-7xl text-white font-bold mb-12"
+              className="text-5xl md:text-7xl text-white font-bold mb-6"
             />
           )}
+          <div className="mt-4 opacity-0 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+              A collection of projects showcasing my passion for full-stack development, 
+              machine learning, and creating meaningful digital experiences.
+            </p>
+          </div>
         </div>
 
-        {/* Keep all existing carousel styling */}
-        <style jsx global>{`
-          ${selectedProject ? `
-            .react-multi-carousel-dot-list,
-            .react-multiple-carousel__arrow {
-              display: none !important;
-            }
-          ` : ''}
-          .react-multiple-carousel__arrow {
-            background: rgba(0, 0, 0, 0.8) !important;
-            border: 2px solid white !important;
-            min-width: 45px !important;
-            min-height: 45px !important;
-            border-radius: 50% !important;
-            transition: all 0.3s ease !important;
-          }
-          .react-multiple-carousel__arrow:hover {
-            background: rgba(0, 0, 0, 0.9) !important;
-            transform: scale(1.1) !important;
-          }
-          .react-multiple-carousel__arrow::before {
-            font-size: 20px !important;
-            font-weight: bold !important;
-            color: white !important;
-          }
-          .react-multiple-carousel__arrow--left {
-            left: 10px !important;
-          }
-          .react-multiple-carousel__arrow--right {
-            right: 10px !important;
-          }
-          .react-multiple-carousel__arrow {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-          }
-        `}</style>
+        {/* Projects Grid */}
+        <div ref={gridRef}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[600px]">
+            {currentProjects.map((project, index) => (
+              <ProjectCard
+                key={`${project.id}-${currentPage}`}
+                project={project}
+                onClick={() => setSelectedProject(project)}
+                index={index}
+                isVisible={gridVisible}
+              />
+            ))}
+          </div>
 
-        <div ref={carouselRef} className="w-full max-w-7xl px-4" style={{
-          opacity: carouselVisible ? 1 : 0,
-          transform: carouselVisible ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out 0.2s'
-        }}>
-          {carouselVisible && (
-            <Carousel
-              responsive={responsive}
-              infinite={true}
-              autoPlay={!selectedProject}
-              autoPlaySpeed={5000}
-              keyBoardControl={true}
-              customTransition="all .5s"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              dotListClass="custom-dot-list-style"
-              itemClass="carousel-item-padding-40-px"
-            >
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} onClick={() => setSelectedProject(project)} />
-              ))}
-            </Carousel>
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center mt-12 space-x-4">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                disabled={currentPage === 0}
+                className="p-3 backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <div className="flex space-x-2">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentPage(i)}
+                    className={`w-10 h-10 rounded-xl font-semibold transition-all duration-300 ${
+                      currentPage === i
+                        ? 'bg-gradient-to-r from-purple-600 to-orange-600 text-white shadow-lg scale-110'
+                        : 'backdrop-blur-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 hover:scale-105'
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                disabled={currentPage === totalPages - 1}
+                className="p-3 backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <div className="ml-4 text-sm text-gray-400">
+                Page {currentPage + 1} of {totalPages}
+              </div>
+            </div>
           )}
         </div>
 
-        {selectedProject && <ProjectPopup project={selectedProject} onClose={() => setSelectedProject(null)} />}
+        {/* Modal */}
+        <ProjectModal
+          project={selectedProject!}
+          onClose={() => setSelectedProject(null)}
+          isOpen={!!selectedProject}
+        />
       </div>
     </section>
   );

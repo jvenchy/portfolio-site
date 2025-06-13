@@ -1,12 +1,26 @@
 import Link from 'next/link';
 import React from 'react';
 import GlareHover from './GlareHover';
+import BlurText from './BlurText';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function Technologies() {
+  const [titleRef, titleVisible] = useScrollAnimation();
+
   return (
     <section id="technologies" className="h-screen flex flex-col justify-center items-center">
       <div className="w-full max-w-screen-lg px-4">
-        <h2 className="text-5xl md:text-7xl font-bold text-white mb-12 font-helvetica tracking-tighter">TECHNOLOGIES</h2>
+        <div className="font-helvetica tracking-tighter" ref={titleRef}>
+          {titleVisible && (
+            <BlurText
+              text="TECHNOLOGIES"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-5xl md:text-7xl font-bold text-white mb-12"
+            />
+          )}
+        </div>
         
         {/* Mosaic of Skill Logos */}
         <div className="ml-12 mr-12 mb-8 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-6 gap-4 mt-6">

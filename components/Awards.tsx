@@ -52,21 +52,13 @@ export default function Awards() {
                   Click Here To View Project's DevPost
                 </a>
                 <p className="mt-4">
-                  My teammates and I created{" "}
-                  <a 
-                    href="https://eventuary.vercel.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="transition-all duration-500 text-theme hover:underline hover:text-themedark"
-                  >
-                    Eventuary
-                  </a> - a web app that lets University of Toronto students register for school events that match their interests by using personalized recommendations and scraping from several different event websites. It's employed with AWS Architecture like Lambda, DynamoDB, Bedrock, Kendra, and Cognito.
+                  My teammates and I created a web app that lets University of Toronto students register for school events that match their interests by using personalized recommendations and scraping from several different event websites. It's employed with AWS Architecture like Lambda, DynamoDB, Bedrock, Kendra, and Cognito.
                 </p>
                 <p className="mt-4">
                   I led cloud architecture design decisions and developed the entire front-end web application. It was a great time learning to use Amazon Web Services while having actual solution architects on standby (thank god for y'all).
                 </p>
                 <p className="mt-4">
-                  As winners, we're currently in talks with UofT faculty in regards to potentially implementing Eventuary into student life!
+                  After posting about this experience and meeting a Rotman Commerce student just as passionate about creating a consolidated campus event platform as I was, this project evolved into <a href="https://saycamel.com" className="transition-all duration-500 text-theme hover:text-themedark hover:underline">Camel</a>!
                 </p>
               </div>
             </>

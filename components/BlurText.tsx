@@ -22,10 +22,10 @@ const BlurText = ({
   direction = 'top',
   threshold = 0.1,
   rootMargin = '0px',
-  animationFrom,
-  animationTo,
+  animationFrom = null,
+  animationTo = null,
   easing = (t) => t,
-  onAnimationComplete,
+  onAnimationComplete = () => {},
   stepDuration = 0.25,
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
@@ -90,8 +90,8 @@ const BlurText = ({
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
+          ease: easing,
         };
-        (spanTransition).ease = easing;
 
         return (
           <motion.span

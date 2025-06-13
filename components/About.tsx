@@ -29,35 +29,35 @@ export default function About() {
                 delay={200}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="📍 University of Toronto - Toronto, Canada 🇨🇦"
                 delay={300}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="🖥️ Computer Science Major, Statistics Minor 📊"
                 delay={400}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
-                text="🎓 Junior Year / Graduating in 2026"
+                text="🎓 Graduating in 2026"
                 delay={500}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="🏆 2x Hackathon Winner"
                 delay={600}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
             </div>
           )}

@@ -31,7 +31,7 @@ export default function PersonalInterests() {
                 I live in Seattle, Washington and also love hiking, lifting weights, and snowboarding.
               </p>
               <div className="mb-8 font-mono text-white text-left">
-                <span>Check out my beats at <a 
+                <span>Check out my beats at<a 
                   href="https://soundcloud.com/northcedar" 
                   target="_blank" 
                   rel="noopener noreferrer" 

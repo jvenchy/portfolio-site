@@ -59,32 +59,33 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
         <div className="relative">
-          <section id="introduction" className="h-screen">
+          <section id="introduction" className="min-h-screen">
             <Introduction />
           </section>
-          <section id="about" className="h-screen">
+          <section id="about" className="min-h-screen">
             <About />
           </section>
-          <section id="projects" className="h-screen">
+          {/* Projects section gets more space - no height constraint */}
+          <section id="projects" className="min-h-screen py-20">
             <Projects />
           </section>
-          <section id="awards" className="h-screen">
+          <section id="awards" className="min-h-screen">
             <Awards />
           </section>
-          <section id="experiences" className="h-screen">
+          <section id="experiences" className="min-h-screen">
             <Experiences />
           </section>
-          <section id="technologies" className="h-screen">
+          <section id="technologies" className="min-h-screen">
             <Technologies />
           </section>
-          <section id="personal-life" className="h-screen">
+          <section id="personal-life" className="min-h-screen">
             <PersonalInterests />
           </section>
         </div>
       </div>
 
       {/* Section indicators */}
-      <div className="fixed bottom-2/3 right-2 xl:right-8 flex flex-col space-y-2 z-50">
+      <div className="fixed bottom-2/3 top-8 right-8 flex flex-col space-y-2 z-50 opacity-0">
         {sections.map((section) => (
           <div
             key={section}
