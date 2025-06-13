@@ -38,7 +38,7 @@ export default function Awards() {
                 direction="top"
                 className="text-xs md:text-sm mb-4"
               />
-              <a href="https://hackstudentlife.ca/">
+              <a href="https://devpost.com/software/eventuary">
                 <Image
                   src="/hackathon-banner.png"
                   alt="AWS x UofT Hackathon Award"
