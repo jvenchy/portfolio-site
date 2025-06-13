@@ -44,7 +44,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative">
+    <main className="relative bg-black min-h-screen">
       {/* Fixed Aurora Background for entire page */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
         <Aurora 
