@@ -30,6 +30,16 @@ const projects: Project[] = [
     featured: true,
   },
   {
+  id: 16,
+  imagelink: "/project-images/16.png",
+  title: "SmartCircles: AI-Powered Social Shopping Platform",
+  tech: "Vite, React, TypeScript, OpenAI API, Neo4j, OpenCage API",
+  year: "12/2024",
+  description: "Hackathon project for no name hacks: an AI platform that transforms individual grocery shopping into collaborative community experiences. Built an intelligent circle formation algorithm using Haversine distance calculations and life-stage classification via OpenAI to automatically group neighbors with similar shopping patterns. Implemented weekend cash challenges with real money rewards, group discount engines, and dynamic circle rebalancing as users' life stages evolve. Features comprehensive transaction analysis, geocoding integration with OpenCage API, and a mobile-responsive interface. Created for Loblaw's corporate hackathon addressing social commerce and healthy spending habits.",
+  githubLink: "https://github.com/jvenchy/smart-circle-savings-flow",
+  featured: true
+  },
+  {
     id: 15,
     imagelink: "/project-images/15.png",
     title: "Stopwatch-Powered Pay Logger",
