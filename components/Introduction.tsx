@@ -28,7 +28,7 @@ export default function Introduction() {
       <div className="flex flex-col items-center relative z-10">
         <div className="w-48 mb-8">
           <Image
-            src="/better_picture.jpg"
+            src="/picture.jpeg"
             alt="Josh Shergill"
             width={200}
             height={200}
