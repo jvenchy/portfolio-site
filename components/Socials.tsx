@@ -56,13 +56,6 @@ export default function Socials() {
                 <span>josh.shergill@mail.utoronto.ca</span>
               </a>
             </div>
-
-            <div style={{ animationDelay: '800ms', opacity: contentVisible ? 1 : 0, transform: contentVisible ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.6s ease-out 0.8s' }}>
-              <div className="flex items-center gap-4">
-                <FaPhone size={24} />
-                <span>206-518-7279</span>
-              </div>
-            </div>
           </>
         )}
       </div>
