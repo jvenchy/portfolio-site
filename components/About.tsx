@@ -13,7 +13,7 @@ export default function About() {
         <div className="font-helvetica tracking-tighter" ref={titleRef}>
           {titleVisible && (
             <BlurText
-              text="ABOUT ME"
+              text="about me"
               delay={100}
               animateBy="words"
               direction="top"
@@ -25,36 +25,36 @@ export default function About() {
           {contentVisible && (
             <div>
               <BlurText
-                text="⛳️ Adaptive, Creatively Motivated, and Goal Oriented"
-                delay={200}
+                text="⛳️ adaptive, creatively motivated, and goal oriented"
+                delay={100}
                 animateBy="words"
                 direction="top"
                 className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
-                text="📍 University of Toronto - Toronto, Canada 🇨🇦"
-                delay={300}
+                text="📍 university of toronto - toronto, canada 🇨🇦"
+                delay={100}
                 animateBy="words"
                 direction="top"
                 className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
-                text="🖥️ Computer Science Major, Statistics Minor 📊"
-                delay={400}
+                text="🖥️ computer science major, statistics minor 📊"
+                delay={100}
                 animateBy="words"
                 direction="top"
                 className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
-                text="🎓 Graduating in 2026"
-                delay={500}
+                text="🎓 graduating in 2027"
+                delay={100}
                 animateBy="words"
                 direction="top"
                 className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
-                text="🏆 2x Hackathon Winner"
-                delay={600}
+                text="🏆 2x hackathon winner"
+                delay={100}
                 animateBy="words"
                 direction="top"
                 className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"

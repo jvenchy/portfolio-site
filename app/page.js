@@ -1,22 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import Introduction from '../components/Introduction';
-import Awards from "../components/Awards";
-import Projects from "../components/Projects";
-import Experiences from "../components/Experiences";
-import Technologies from '../components/Technologies';
 import About from '../components/About';
-import PersonalInterests from '../components/PersonalInterests';
 import Navbar from "../components/Navbar";
 import ScrollDirectionIndicator from '../components/Scroll';
-import Aurora from '@/components/Aurora';
+import Beams from '@/components/Beams';
+
+const Experiences = lazy(() => import('../components/Experiences'));
+const Projects = lazy(() => import('../components/Projects'));
+const Awards = lazy(() => import("../components/Awards"));
+const PersonalInterests = lazy(() => import('../components/PersonalInterests'));
+const Technologies = lazy(() => import('../components/Technologies'));
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("introduction");
 
   // Make sure these IDs exactly match the section IDs in your JSX
-  const sections = ["introduction", "about", "projects", "awards", "experiences", "technologies", "personal-life"];
+  const sections = ["introduction", "about", "experiences", "projects", "awards", "personal-life"];
 
   useEffect(() => {
     const observerOptions = {
@@ -45,13 +46,17 @@ export default function Home() {
 
   return (
     <main className="relative bg-[#0a0a0a] min-h-screen">
-      {/* Fixed Aurora Background for entire page */}
+      {/* Fixed Beams Background for entire page */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
-        <Aurora 
-          colorStops={["#5227FF", "#7cff67", "#5227FF"]}
-          amplitude={1.2}
-          blend={0.3}
-          speed={0.8}
+        <Beams
+          beamWidth={2.5}
+          beamHeight={40}
+          beamNumber={45}
+          lightColor="#ffffff"
+          speed={2.9}
+          noiseIntensity={2.5}
+          scale={0.15}
+          rotation={45}
         />
       </div>
 
@@ -65,22 +70,30 @@ export default function Home() {
           <section id="about" className="min-h-screen">
             <About />
           </section>
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <section id="experiences" className="min-h-screen">
+              <Experiences />
+            </section>
+          </Suspense>
           {/* Projects section gets more space - no height constraint */}
-          <section id="projects" className="min-h-screen py-20">
-            <Projects />
-          </section>
-          <section id="awards" className="min-h-screen">
-            <Awards />
-          </section>
-          <section id="experiences" className="min-h-screen">
-            <Experiences />
-          </section>
-          <section id="technologies" className="min-h-screen">
+          <Suspense fallback={<div className="min-h-screen py-20" />}>
+            <section id="projects" className="min-h-screen py-20">
+              <Projects />
+            </section>
+          </Suspense>
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <section id="awards" className="min-h-screen">
+              <Awards />
+            </section>
+          </Suspense>
+          {/* <section id="technologies" className="min-h-screen">
             <Technologies />
-          </section>
-          <section id="personal-life" className="min-h-screen">
-            <PersonalInterests />
-          </section>
+          </section> */}
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <section id="personal-life" className="min-h-screen">
+              <PersonalInterests />
+            </section>
+          </Suspense>
         </div>
       </div>
 

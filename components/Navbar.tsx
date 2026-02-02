@@ -9,9 +9,9 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/contact", label: "Contact" },
-    { href: "/resume", label: "Resume" },
+    { href: "/", label: "home" },
+    { href: "/contact", label: "contact" },
+    { href: "/resume", label: "resume" },
   ];
 
   return (
@@ -54,7 +54,7 @@ const Navbar = () => {
           {/* Header */}
           <div className="p-8 border-b border-white/10">
             <h2 className="text-2xl text-center font-helvetica tracking-tighter font-bold text-white tracking-tight">
-              NAVIGATION
+              navigation
             </h2>
           </div>
 

@@ -6,6 +6,7 @@ import BlurText from "./BlurText";
 export default function Introduction() {
   const [phase, setPhase] = useState(1);
   const [showSecondText, setShowSecondText] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFirstAnimationComplete = () => {
     console.log('First animation completed!');
@@ -26,21 +27,57 @@ export default function Introduction() {
     >
       {/* Content Layer - Aurora is now handled at page level */}
       <div className="flex flex-col items-center relative z-10">
-        <div className="w-48 mb-8">
-          <Image
-            src="/picture.jpeg"
-            alt="Josh Shergill"
-            width={200}
-            height={200}
-            className="rounded-full object-cover aspect-square overflow-hidden border-4 border-white transition-all duration-500 hover:scale-90 hover:border-theme"
-          />
+        <div
+          className="w-48 h-48 mb-8"
+          style={{ perspective: '1000px' }}
+          onMouseEnter={() => setIsFlipped(true)}
+          onMouseLeave={() => setIsFlipped(false)}
+        >
+          <div
+            className="relative w-full h-full transition-transform duration-700"
+            style={{
+              transformStyle: 'preserve-3d',
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+            }}
+          >
+            {/* Front - picture2.jpeg */}
+            <div
+              className="absolute inset-0"
+              style={{ backfaceVisibility: 'hidden' }}
+            >
+              <Image
+                src="/picture2.jpeg"
+                alt="Josh Shergill"
+                width={200}
+                height={200}
+                className="rounded-full object-cover aspect-square overflow-hidden border-4 border-white w-full h-full"
+              />
+            </div>
+
+            {/* Back - picture.jpeg */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backfaceVisibility: 'hidden',
+                transform: 'rotateY(180deg)'
+              }}
+            >
+              <Image
+                src="/better_picture.jpg"
+                alt="Josh Shergill"
+                width={200}
+                height={200}
+                className="rounded-full object-cover aspect-square overflow-hidden border-4 border-white w-full h-full"
+              />
+            </div>
+          </div>
         </div>
         <div className="text-center">
           <div className="relative">
             <h1 className="text-4xl md:text-7xl font-helvetica tracking-tighter mb-4 md:mb-8 text-theme flex items-center justify-center">
               {phase === 1 && (
                 <BlurText
-                  text="Hi There."
+                  text="hey there."
                   delay={150}
                   animateBy="words"
                   direction="top"
@@ -50,7 +87,7 @@ export default function Introduction() {
               )}
               {phase === 2 && showSecondText && (
                 <BlurText
-                  text="My Name's Josh."
+                  text="it's josh."
                   delay={150}
                   animateBy="words"
                   direction="top"
@@ -60,8 +97,8 @@ export default function Introduction() {
               )}
             </h1>
           </div>
-          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text text-white bg-black">
-              I'm an aspiring software engineer with a passion for full-stack web development, system architecture, and UX.
+          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text text-white bg-black max-w-3xl mx-auto px-4">
+              i'm a <span className="text-[#7a9d7e]">software engineer</span> with a passion for full-stack development, system architecture, and clean UX.
           </p>
           <div className="flex flex-row justify-center font-helvetica tracking-tighter space-x-4 mt-4">
             <a

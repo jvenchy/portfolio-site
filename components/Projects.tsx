@@ -51,14 +51,14 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: 1,
-    imagelink: "/project-images/1.png",
-    title: "Social Media & Code Execution Platform",
-    tech: "Next.js, React, Tailwind, Docker, SQLite",
-    year: "10/2024",
-    description: "Implemented real-time code execution across various languages, saving and viewing code snippets, creating blog posts with code templates, account creation, and commenting and voting on posts, all using a Monorepo strategy. All done through custom API endpoints for each individual task. Then, created responsive and dynamic front-end with dark mode capabilities and an engaging yet simplistic interface.",
-    githubLink: "https://github.com/jvenchy/scriptorium",
-    featured: true,
+    id: 8,
+    imagelink: "/project-images/8.png",
+    title: "Pokemon Trading Card & Battle Simulator",
+    tech: "Java, JSwing",
+    year: "10/2023",
+    description:
+      "Comprehensive software for Pokémon card enthusiasts, integrating collection, deck building, and trading functionalities. Utilized API calls for a database of over 15,000 cards with Clean Architecture principles.",
+    githubLink: "https://github.com/jvenchy/Pokemon-Battle-Simulator",
   },
   {
     id: 2,
@@ -68,17 +68,6 @@ const projects: Project[] = [
     year: "08/2024",
     description: "Used YOLOv5 and PyTorch to train a custom model on a dataset of 120 images, each labeled with one of six common signs from American Sign Language (ASL). The model achieved high accuracy in sign recognition with comprehensive training metrics available.",
     githubLink: "https://github.com/jvenchy/AmericanSignLanguage-Detection-with-YOLOv5",
-    featured: true,
-  },
-  {
-    id: 3,
-    imagelink: "/project-images/3.png",
-    title: "BalanceAI: K-12 Literacy Assessment Platform",
-    tech: "React, TypeScript, Google Firebase",
-    year: "09/2024",
-    description:
-      "Web-based literacy assessment platform for grade 1-6 students that utilizes AI in assessing oral production, reading, and writing skills. Built for the Research lab at the Department of Applied Psychology & Human Development in OISE.",
-    githubLink: "https://balanceai.ca",
     featured: true,
   },
   {
@@ -92,6 +81,17 @@ const projects: Project[] = [
     githubLink: "https://github.com/jvenchy/cscshell",
   },
   {
+    id: 3,
+    imagelink: "/project-images/3.png",
+    title: "BalanceAI: K-12 Literacy Assessment Platform",
+    tech: "React, TypeScript, Google Firebase",
+    year: "09/2024",
+    description:
+      "Web-based literacy assessment platform for grade 1-6 students that utilizes AI in assessing oral production, reading, and writing skills. Built for the Research lab at the Department of Applied Psychology & Human Development in OISE.",
+    githubLink: "https://balanceai.ca",
+    featured: true,
+  },
+  {
     id: 5,
     imagelink: "/project-images/5.png",
     title: "Eventuary: Personalized Events for UofT students",
@@ -99,6 +99,16 @@ const projects: Project[] = [
     year: "11/2024",
     description: "Hackathon winning project that creates personalized event recommendations for University of Toronto students. Features intelligent matching and seamless event discovery.",
     githubLink: "https://github.com/jvenchy/eventuary",
+  },
+  {
+    id: 1,
+    imagelink: "/project-images/1.png",
+    title: "Social Media & Code Execution Platform",
+    tech: "Next.js, React, Tailwind, Docker, SQLite",
+    year: "10/2024",
+    description: "Implemented real-time code execution across various languages, saving and viewing code snippets, creating blog posts with code templates, account creation, and commenting and voting on posts, all using a Monorepo strategy. All done through custom API endpoints for each individual task. Then, created responsive and dynamic front-end with dark mode capabilities and an engaging yet simplistic interface.",
+    githubLink: "https://github.com/jvenchy/scriptorium",
+    featured: true,
   },
   {
     id: 6,
@@ -119,16 +129,6 @@ const projects: Project[] = [
     description:
       "Developed a breast cancer classifier using the kNN algorithm to accurately classify cell clumps as either malignant or benign based on their features with comprehensive accuracy metrics.",
     githubLink: "https://github.com/jvenchy/breast-cancer-classifier",
-  },
-  {
-    id: 8,
-    imagelink: "/project-images/8.png",
-    title: "Pokemon Trading Card & Battle Simulator",
-    tech: "Java, JSwing",
-    year: "10/2023",
-    description:
-      "Comprehensive software for Pokémon card enthusiasts, integrating collection, deck building, and trading functionalities. Utilized API calls for a database of over 15,000 cards with Clean Architecture principles.",
-    githubLink: "https://github.com/jvenchy/Pokemon-Battle-Simulator",
   },
   {
     id: 9,
@@ -181,7 +181,7 @@ const ProjectCard: React.FC<{
   return (
     <div
       className={`group relative font-helvetica tracking-tighter backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden cursor-pointer transition-all duration-700 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] hover:-translate-y-2 ${
-        project.featured ? 'ring-2 ring-purple-500/30' : ''
+        project.featured ? 'ring-2 ring-white/20' : ''
       }`}
       onClick={onClick}
       style={{
@@ -190,13 +190,6 @@ const ProjectCard: React.FC<{
         transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 100}ms`,
       }}
     >
-      {/* {project.featured && (
-        <div className="absolute top-4 right-4 z-10">
-          <div className="px-3 py-1 bg-gradient-to-r from-purple-500 to-orange-500 text-white text-xs font-bold rounded-full">
-            FEATURED
-          </div>
-        </div>
-      )} */}
       
       <div className="relative h-48 overflow-hidden">
         <Image 
@@ -218,7 +211,7 @@ const ProjectCard: React.FC<{
       
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors duration-300 line-clamp-2">
+          <h3 className="text-lg font-bold text-white group-hover:text-blue-100 transition-colors duration-300 line-clamp-2">
             {project.title}
           </h3>
         </div>
@@ -233,7 +226,7 @@ const ProjectCard: React.FC<{
         </p>
         
         {/* Animated bottom border */}
-        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-orange-500 group-hover:w-full transition-all duration-700" />
+        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-200 to-white group-hover:w-full transition-all duration-700" />
       </div>
     </div>
   );
@@ -285,15 +278,7 @@ const ProjectModal: React.FC<{
             >
               <FaTimes className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
             </button>
-            
-            {/* {project.featured && (
-              <div className="absolute top-6 left-6">
-                <div className="px-4 py-2 bg-gradient-to-r from-purple-500 to-orange-500 text-white text-sm font-bold rounded-full">
-                  FEATURED PROJECT
-                </div>
-              </div>
-            )} */}
-            
+
             <div className="absolute bottom-6 left-6 right-6">
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
                 {project.title}
@@ -326,7 +311,7 @@ const ProjectModal: React.FC<{
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-purple-600 to-orange-600 hover:from-purple-700 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                  className="group inline-flex items-center space-x-3 px-6 py-3 backdrop-blur-md bg-white/10 hover:bg-white/20 border border-white/20 hover:border-white/40 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   <FaGithub className="text-lg group-hover:rotate-12 transition-transform duration-300" />
                   <span>View on GitHub</span>
@@ -347,14 +332,15 @@ export default function Projects() {
   const [gridRef, gridVisible] = useScrollAnimation();
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
   const [currentPage, setCurrentPage] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const filteredProjects = filter === 'featured' 
+  const filteredProjects = filter === 'featured'
     ? projects.filter(p => p.featured)
     : projects;
 
   // Dynamic projects per page based on screen size
   const [projectsPerPage, setProjectsPerPage] = useState(6);
-  
+
   useEffect(() => {
     const updateProjectsPerPage = () => {
       if (window.innerWidth < 640) {
@@ -377,92 +363,98 @@ export default function Projects() {
     (currentPage + 1) * projectsPerPage
   );
 
+  // Fill with ghost cards to maintain grid layout
+  const projectsToDisplay: (Project | null)[] = [...currentProjects];
+  while (projectsToDisplay.length < projectsPerPage) {
+    projectsToDisplay.push(null);
+  }
+
   // Reset to first page when filter changes
   useEffect(() => {
     setCurrentPage(0);
   }, [filter]);
 
+  const handlePageChange = (newPage: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentPage(newPage);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 300);
+  };
+
   return (
     <section className="min-h-screen flex flex-col justify-center py-20">
-      <div className="w-full max-w-7xl font-helvetica tracking-tighter mx-auto px-6">
+      <div className="w-full max-w-5xl font-helvetica tracking-tighter mx-auto px-6 relative">
         {/* Title */}
         <div className="text-center" ref={titleRef}>
           {titleVisible && (
-            <BlurText
-              text="PROJECTS"
-              delay={100}
-              animateBy="words"
-              direction="top"
-              className="text-5xl md:text-7xl text-white font-bold mb-6"
-            />
+            <>
+              <BlurText
+                text="projects"
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-5xl md:text-7xl text-white font-bold mb-6"
+              />
+              <p className="mt-4 mb-8 text-white text-sm md:text-lg font-mono text-left">
+                things i've <span className="text-[#7a9d7e]">built </span> for fun, for learning, and sometimes because i couldn't find what i needed.
+              </p>
+            </>
           )}
-          <div className="mt-4 opacity-0 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-            <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
-              A collection of projects showcasing my passion for full-stack development, 
-              machine learning, and creating meaningful digital experiences.
-            </p>
-          </div>
         </div>
 
         {/* Projects Grid */}
-        <div ref={gridRef}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[600px]">
-            {currentProjects.map((project, index) => (
-              <ProjectCard
-                key={`${project.id}-${currentPage}`}
-                project={project}
-                onClick={() => setSelectedProject(project)}
-                index={index}
-                isVisible={gridVisible}
-              />
-            ))}
+        <div ref={gridRef} className="overflow-hidden">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[600px] transition-all duration-300 ease-in-out"
+            style={{
+              opacity: isTransitioning ? 0 : 1,
+              transform: isTransitioning ? 'translateY(20px)' : 'translateY(0)',
+            }}
+          >
+            {projectsToDisplay.map((project, index) =>
+              project ? (
+                <ProjectCard
+                  key={`${project.id}-${currentPage}`}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                  index={index}
+                  isVisible={gridVisible && !isTransitioning}
+                />
+              ) : (
+                <div key={`ghost-${index}`} className="min-h-[400px] opacity-0 pointer-events-none" />
+              )
+            )}
           </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center mt-12 space-x-4">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
-                disabled={currentPage === 0}
-                className="p-3 backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-
-              <div className="flex space-x-2">
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentPage(i)}
-                    className={`w-10 h-10 rounded-xl font-semibold transition-all duration-300 ${
-                      currentPage === i
-                        ? 'bg-gradient-to-r from-purple-600 to-orange-600 text-white shadow-lg scale-110'
-                        : 'backdrop-blur-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 hover:scale-105'
-                    }`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
-                disabled={currentPage === totalPages - 1}
-                className="p-3 backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:scale-105"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              <div className="ml-4 text-sm text-gray-400">
-                Page {currentPage + 1} of {totalPages}
-              </div>
-            </div>
-          )}
         </div>
+
+        {/* Navigation Chevrons for Projects - Desktop Only */}
+        {totalPages > 1 && currentPage > 0 && !isTransitioning && (
+          <button
+            onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
+            className="hidden lg:block absolute -left-20 top-1/2 -translate-y-1/2 z-40 p-4 backdrop-blur-md bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-all duration-300 hover:scale-110 group"
+            aria-label="Previous page"
+          >
+            <svg className="w-6 h-6 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        )}
+
+        {totalPages > 1 && currentPage < totalPages - 1 && !isTransitioning && (
+          <button
+            onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
+            className="hidden lg:block absolute -right-20 top-1/2 -translate-y-1/2 z-40 p-4 backdrop-blur-md bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-all duration-300 hover:scale-110 group"
+            aria-label="Next page"
+          >
+            <svg className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
 
         {/* Modal */}
         <ProjectModal

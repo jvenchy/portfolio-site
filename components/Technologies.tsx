@@ -36,7 +36,7 @@ export default function Technologies() {
             { src: "/skills-logos/pandas.png", alt: "Pandas" },
             { src: "/skills-logos/react.png", alt: "React" },
             { src: "/skills-logos/nextjs.png", alt: "Next.js" },
-            { src: "/skills-logos/svelte.png", alt: "Svelte" },
+            { src: "/skills-logos/c++.png", alt: "C++" },
             { src: "/skills-logos/nodejs.png", alt: "Node.js" },
             { src: "/skills-logos/docker.png", alt: "Docker" },
             { src: "/skills-logos/tailwind.png", alt: "Tailwind" },

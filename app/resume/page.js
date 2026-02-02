@@ -35,7 +35,7 @@ export default function Resume() {
             download
             className="text-xl font-mono text-white hover:text-themedark hover:underline transition-colors"
           >
-            Alternate Download Link
+            alternate download link
           </a>
         </div>
       </div>

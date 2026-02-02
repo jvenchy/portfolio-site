@@ -25,13 +25,13 @@ export default function PersonalInterests() {
           {contentVisible && (
             <>
               <p className="mb-8 font-mono text-white text-left">
-                When I'm not coding, you can find me on the basketball court or in my home studio producing music.
+                when i'm not coding, you can find me on the basketball court or in my home studio <span className="text-[#7a9d7e]">producing music.</span>
               </p>
               <p className="mb-8 font-mono text-white text-left">
-                I live in Seattle, Washington and also love hiking, lifting weights, and snowboarding.
+                i live in seattle, washington and also love hiking, lifting weights, and snowboarding.
               </p>
               <div className="mb-8 font-mono text-white text-left">
-                <span>Check out my beats at<a 
+                <span>check out my music at<a 
                   href="https://soundcloud.com/northcedar" 
                   target="_blank" 
                   rel="noopener noreferrer" 

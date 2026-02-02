@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from 'next/image';
 import { FaBriefcase, FaCalendarAlt, FaTimes, FaBuilding, FaChevronRight } from 'react-icons/fa';
 import BlurText from './BlurText';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
@@ -14,17 +15,72 @@ type Experience = {
   description: string;
   achievements: string[];
   technologies: string[];
-  type: 'part-time' | 'internship' | 'contract';
+  type: 'part-time' | 'internship' | 'contract' | 'founder';
+  imageUrl?: string;
 };
 
 const experiences: Experience[] = [
   {
     id: 1,
+    title: "Software Engineer Intern",
+    company: "Boost Collective",
+    year: "Dec. 2025 - Present",
+    duration: "2+ months",
+    type: "internship",
+    imageUrl: "/experience-logos/boost-collective.png",
+    description:
+      "Maintaining a large-scale PNPM monorepo powering tools used by 50k+ musical artists, building analytics tools, and integrating CMS solutions.",
+    achievements: [
+      "Maintaining a large-scale PNPM monorepo powering tools used by 50k+ musical artists, resolving cross-package build issues and improving site speed",
+      "Built artist-facing analytics tools with a robust backend, processing 1M+ streaming data points for royalty modeling, growth projections, and statistical anomaly detection",
+      "Integrated a headless CMS tool enabling non-technical teams to manage static content and publish SEO-optimized blog posts, streamlining user acquisition funnels"
+    ],
+    technologies: ["PNPM", "Monorepo", "Analytics", "CMS", "Backend Development", "Data Processing"]
+  },
+  {
+    id: 2,
+    title: "Director of Operations",
+    company: "Google Developer Student Clubs - UTSG",
+    year: "Sep. 2025 - Present",
+    duration: "6+ months",
+    type: "part-time",
+    imageUrl: "/experience-logos/gdg.png",
+    description:
+      "Operations executive for the University of Toronto St. George chapter of the Google Developer Student Club, managing club operations and community engagement.",
+    achievements: [
+      "Leading operational strategies for UTSG's Google Developer Student Club chapter",
+      "Coordinating technical workshops and events for student developers",
+      "Managing club resources and facilitating collaboration between technical teams",
+      "Building partnerships with industry professionals and organizing community outreach programs"
+    ],
+    technologies: ["Leadership", "Operations Management", "Community Building", "Event Planning", "Google Technologies"]
+  },
+  {
+    id: 3,
+    title: "Founder & Lead Engineer",
+    company: "Camel (saycamel.com)",
+    year: "Jan. 2025 - Present",
+    duration: "3+ months",
+    type: "founder",
+    imageUrl: "/experience-logos/camel.png",
+    description:
+      "Founded and scaled a full-stack campus event discovery platform designed to handle 30k+ monthly API calls, continuous scraping jobs, and real-time recommendation inference.",
+    achievements: [
+      "Founded and scaled a full-stack campus event discovery platform designed to handle 30k+ monthly API calls, continuous scraping jobs, and real-time recommendation inference",
+      "Developed a machine learning engine leveraging TF-IDF vectorization and category-aware similarity scoring, achieving 92% accuracy through real-time user preference learning and behavioral analysis",
+      "Automated data pipeline using Selenium and Gemini API for processing 400+ events weekly from 1k+ sources",
+      "Managed a team of 10 to assist in accelerating platform growth to over 800 accounts & 4.1k monthly visitors"
+    ],
+    technologies: ["Next.js", "React.js", "Python", "Gemini", "Vercel", "Supabase", "Machine Learning", "TF-IDF", "Selenium"]
+  },
+  {
+    id: 4,
     title: "Software Developer",
     company: "Department of Computer Science @ UofT, SDS Team",
-    year: "May 2025 - Present",
-    duration: "2+ months",
+    year: "May 2025 - December 2025",
+    duration: "9+ months",
     type: "part-time",
+    imageUrl: "/experience-logos/uoftcs.png",
     description:
       "Developing and enhancing educational technology tools for computer science education, with a focus on improving learning experiences for novice Python programmers.",
     achievements: [
@@ -36,12 +92,13 @@ const experiences: Experience[] = [
     technologies: ["TypeScript", "Python", "CI/CD", "Testing", "Educational Technology", "UX Design"]
   },
   {
-    id: 2,
+    id: 5,
     title: "Software Engineer Research Intern",
     company: "Ontario Institute for Studies in Education @ UofT",
     year: "Sept. 2024 - Dec. 2024",
     duration: "4 months",
     type: "internship",
+    imageUrl: "/experience-logos/oise.png",
     description:
       "Worked on educational technology research focusing on user engagement and backend optimization for student assessment platforms.",
     achievements: [
@@ -52,12 +109,13 @@ const experiences: Experience[] = [
     technologies: ["React", "Google Firebase", "UI/UX Design", "Backend Optimization", "Educational Technology"]
   },
   {
-    id: 3,
+    id: 6,
     title: "Software QA Dev",
-    company: "DataAnnotation",
+    company: "Stellar",
     year: "Dec. 2023 - May 2025",
     duration: "1+ years",
     type: "contract",
+    imageUrl: "/experience-logos/stellar.png",
     description:
       "Led quality assurance and development projects for cutting-edge AI systems, focusing on comprehensive testing and code review processes for large language models.",
     achievements: [
@@ -67,36 +125,21 @@ const experiences: Experience[] = [
       "Worked on agentic AI such as Google's Jules, utilizing various languages/frameworks"
     ],
     technologies: ["Python", "AI/ML", "LLM Development", "Testing", "Quality Assurance", "Multiple Programming Languages"]
-  },
-  {
-    id: 4,
-    title: "Software Engineer Intern",
-    company: "Cloptim",
-    year: "Jun. 2023 - Aug. 2023",
-    duration: "3 months",
-    type: "internship",
-    description:
-      "Focused on cloud optimization and data analytics, delivering significant cost savings through AWS resource optimization and building scalable data processing pipelines.",
-    achievements: [
-      "Designed AWS cloud optimization strategies reducing client costs by $3,000+",
-      "Built Apache Spark analytics pipelines processing 1TB+ client data daily",
-      "Enabled real-time business insights via React dashboards",
-      "Implemented data-driven resource allocation strategies"
-    ],
-    technologies: ["AWS", "Apache Spark", "React", "Data Analytics", "Cloud Optimization", "Big Data"]
   }
 ];
 
 const getTypeColor = (type: Experience['type']) => {
   switch (type) {
     case 'part-time':
-      return 'from-green-500 to-emerald-500';
+      return 'from-blue-100 to-white';
     case 'internship':
-      return 'from-blue-500 to-cyan-500';
+      return 'from-blue-200 to-blue-100';
     case 'contract':
-      return 'from-purple-500 to-orange-500';
+      return 'from-white to-blue-100';
+    case 'founder':
+      return 'from-blue-50 to-white';
     default:
-      return 'from-gray-500 to-gray-600';
+      return 'from-gray-400 to-gray-500';
   }
 };
 
@@ -108,6 +151,8 @@ const getTypeLabel = (type: Experience['type']) => {
       return 'Internship';
     case 'contract':
       return 'Contract';
+    case 'founder':
+      return 'Founder';
     default:
       return 'Position';
   }
@@ -138,14 +183,25 @@ const ExperienceCard: React.FC<{
 
       {/* Company Icon */}
       <div className="flex items-center space-x-4 mb-4">
-        <div className="p-3 backdrop-blur-md bg-white/10 rounded-xl">
-          <FaBuilding className="text-xl text-white" />
-        </div>
+        {experience.imageUrl ? (
+          <div className="relative w-12 h-12 backdrop-blur-md bg-white/10 rounded-xl overflow-hidden">
+            <Image
+              src={experience.imageUrl}
+              alt={`${experience.company} logo`}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="p-3 backdrop-blur-md bg-white/10 rounded-xl">
+            <FaBuilding className="text-xl text-white" />
+          </div>
+        )}
         <div>
-          <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300">
+          <h3 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
             {experience.title}
           </h3>
-          <p className="text-purple-300 font-semibold">{experience.company}</p>
+          <p className="text-blue-100 font-semibold">{experience.company}</p>
         </div>
       </div>
 
@@ -190,7 +246,7 @@ const ExperienceCard: React.FC<{
       </div>
 
       {/* Animated bottom border */}
-      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-orange-500 group-hover:w-full transition-all duration-700" />
+      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-200 to-white group-hover:w-full transition-all duration-700" />
     </div>
   );
 };
@@ -225,7 +281,7 @@ const ExperienceModal: React.FC<{
       <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-500 slide-in-from-bottom-10">
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
           {/* Header */}
-          <div className="relative bg-gradient-to-r from-purple-600/20 to-orange-600/20 p-8 border-b border-white/10">
+          <div className="relative bg-white/5 p-8 border-b border-white/10">
             {/* Close button */}
             <button
               onClick={onClose}
@@ -236,7 +292,7 @@ const ExperienceModal: React.FC<{
 
             .
             <div className="absolute top-6 left-6">
-              <div className={`px-4 py-2 bg-gradient-to-r ${getTypeColor(experience.type)} text-white text-sm font-bold rounded-full`}>
+              <div className={`px-4 py-2 bg-gradient-to-r ${getTypeColor(experience.type)} text-black text-sm font-bold rounded-full`}>
                 {getTypeLabel(experience.type)}
               </div>
             </div>
@@ -245,7 +301,7 @@ const ExperienceModal: React.FC<{
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
                 {experience.title}
               </h1>
-              <h2 className="text-xl text-purple-300 font-semibold mb-4">
+              <h2 className="text-xl text-blue-100 font-semibold mb-4">
                 {experience.company}
               </h2>
               <div className="flex items-center space-x-6 text-gray-200">
@@ -277,7 +333,7 @@ const ExperienceModal: React.FC<{
               <ul className="space-y-3">
                 {experience.achievements.map((achievement, index) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full mt-2 flex-shrink-0" />
+                    <div className="w-2 h-2 bg-white/80 rounded-full mt-2 flex-shrink-0" />
                     <span className="text-gray-300 leading-relaxed">{achievement}</span>
                   </li>
                 ))}
@@ -291,7 +347,7 @@ const ExperienceModal: React.FC<{
                 {experience.technologies.map((tech, index) => (
                   <span
                     key={index}
-                    className="px-4 py-2 bg-gradient-to-r from-purple-600/20 to-orange-600/20 border border-purple-500/30 text-white rounded-lg font-medium hover:from-purple-600/30 hover:to-orange-600/30 transition-all duration-300"
+                    className="px-4 py-2 backdrop-blur-md bg-white/5 border border-white/20 text-white rounded-lg font-medium hover:bg-white/10 transition-all duration-300"
                   >
                     {tech}
                   </span>
@@ -316,20 +372,19 @@ export default function Experiences() {
         {/* Title */}
         <div className="text-center" ref={titleRef}>
           {titleVisible && (
-            <BlurText
-              text="EXPERIENCE"
-              delay={100}
-              animateBy="words"
-              direction="top"
-              className="text-5xl md:text-7xl text-white font-bold mb-6"
-            />
+            <>
+              <BlurText
+                text="work experience"
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-5xl md:text-7xl text-white font-bold mb-6"
+              />
+              <p className="mt-8 mb-8 text-white text-sm md:text-lg font-mono text-left">
+                where i've worked, what i've learned, and the teams that taught me how to <span className="text-[#7a9d7e]"> build better software. </span> 
+              </p>
+            </>
           )}
-          <div className="mt-8 opacity-0 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-            <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
-              Professional experiences that have shaped my journey as a software engineer, 
-              from AI research to cloud optimization and full-stack development.
-            </p>
-          </div>
         </div>
 
         {/* Experiences Grid */}
