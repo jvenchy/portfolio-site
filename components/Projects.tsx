@@ -74,7 +74,7 @@ const projects: Project[] = [
     id: 4,
     imagelink: "/project-images/4.png",
     title: "Shell Command Language Interpreter",
-    tech: "Objective-C",
+    tech: "C Programming Language",
     year: "01/2024",
     description:
       "Implemented interactive and scriptable shell functionalities, allowing for command line arguments and stdin/stdout/stderr interactions. Enabled execution of executables through system calls such as fork, exec, and wait.",
