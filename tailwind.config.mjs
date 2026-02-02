@@ -10,18 +10,18 @@ export default {
   	extend: {
   		fontFamily: {
   			gotham: [
-  				'Gotham Black"',
+  				'Gotham Black',
   				'Arial',
   				'sans-serif'
   			],
   			helvetica: [
-  				'Helvetica Neue"',
+  				'Helvetica Neue',
   				'Helvetica',
   				'Arial',
   				'sans-serif'
   			],
   			sans: [
-  				'Helvetica Neue"',
+  				'Helvetica Neue',
   				'Helvetica',
   				'Arial',
   				'sans-serif'
