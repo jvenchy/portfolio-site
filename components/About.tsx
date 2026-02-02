@@ -17,7 +17,7 @@ export default function About() {
               delay={100}
               animateBy="words"
               direction="top"
-              className="text-5xl md:text-7xl font-bold text-white mb-12 mr-10 ml-10"
+              className="text-5xl md:text-7xl font-bold text-white mb-12 mr-4 ml-4 md:mr-10 md:ml-10"
             />
           )}
         </div>
@@ -29,35 +29,35 @@ export default function About() {
                 delay={100}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-4 md:ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="📍 university of toronto - toronto, canada 🇨🇦"
                 delay={100}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-4 md:ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="🖥️ computer science major, statistics minor 📊"
                 delay={100}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-4 md:ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="🎓 graduating in 2027"
                 delay={100}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-4 md:ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
               <BlurText
                 text="🏆 2x hackathon winner"
                 delay={100}
                 animateBy="words"
                 direction="top"
-                className="transition-all duration-200 hover:scale-110 ml-10 mb-8 font-mono text-white text-sm md:text-lg"
+                className="transition-all duration-200 hover:scale-110 ml-4 md:ml-10 mb-8 font-mono text-white text-sm md:text-lg"
               />
             </div>
           )}

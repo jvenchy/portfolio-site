@@ -48,16 +48,31 @@ export default function Home() {
     <main className="relative bg-[#0a0a0a] min-h-screen">
       {/* Fixed Beams Background for entire page */}
       <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
-        <Beams
-          beamWidth={2.5}
-          beamHeight={40}
-          beamNumber={45}
-          lightColor="#ffffff"
-          speed={2.9}
-          noiseIntensity={2.5}
-          scale={0.15}
-          rotation={45}
-        />
+        <div className="absolute inset-0" style={{ opacity: 0.5 }}>
+          <Beams
+            beamWidth={20}
+            beamHeight={50}
+            beamNumber={3}
+            lightColor="#ffffff"
+            speed={6.9}
+            noiseIntensity={4.5}
+            scale={0.125}
+            rotation={255}
+          />
+        </div>
+        <div className="absolute inset-0" style={{ opacity: 0.5, mixBlendMode: 'screen' }}>
+          <Beams
+            beamWidth={20}
+            beamHeight={50}
+            beamNumber={3}
+            lightColor="#ffffff"
+            speed={6.9}
+            noiseIntensity={4.5}
+            scale={0.125}
+            rotation={75}
+            transparent={true}
+          />
+        </div>
       </div>
 
       {/* All content with relative positioning to appear above aurora */}

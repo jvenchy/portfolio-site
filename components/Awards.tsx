@@ -33,7 +33,7 @@ const awards: Award[] = [
   },
   {
     id: 2,
-    title: "Amazon Web Services x UofT Hackathon, First Place 🏆",
+    title: "Amazon Web Services x UofT Hackathon, 1st Place",
     issuer: "Amazon Web Services & University of Toronto",
     date: "November 29th, 2024",
     description: "Won first place in a competitive hackathon focused on AWS cloud architecture and innovative solutions for campus event discovery.",

@@ -49,8 +49,13 @@ function extendMaterial(BaseMaterial, cfg) {
   return mat;
 }
 
-const CanvasWrapper = ({ children }) => (
-  <Canvas dpr={[1, 2]} frameloop="always" className="beams-container">
+const CanvasWrapper = ({ children, transparent = false }) => (
+  <Canvas
+    dpr={[1, 2]}
+    frameloop="always"
+    className="beams-container"
+    gl={{ alpha: transparent }}
+  >
     {children}
   </Canvas>
 );
@@ -148,7 +153,8 @@ const Beams = ({
   speed = 2,
   noiseIntensity = 1.75,
   scale = 0.2,
-  rotation = 0
+  rotation = 0,
+  transparent = false
 }) => {
   const meshRef = useRef(null);
   const beamMaterial = useMemo(
@@ -209,13 +215,13 @@ const Beams = ({
   );
 
   return (
-    <CanvasWrapper>
+    <CanvasWrapper transparent={transparent}>
       <group rotation={[0, 0, degToRad(rotation)]}>
         <PlaneNoise ref={meshRef} material={beamMaterial} count={beamNumber} width={beamWidth} height={beamHeight} />
         <DirLight color={lightColor} position={[0, 3, 10]} />
       </group>
       <ambientLight intensity={1} />
-      <color attach="background" args={['#000000']} />
+      {!transparent && <color attach="background" args={['#000000']} />}
       <PerspectiveCamera makeDefault position={[0, 0, 20]} fov={30} />
     </CanvasWrapper>
   );

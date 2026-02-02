@@ -11,10 +11,12 @@
 
 body {
   font-family: 'Gotham Black', Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 

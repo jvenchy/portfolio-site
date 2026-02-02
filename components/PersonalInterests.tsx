@@ -21,7 +21,7 @@ export default function PersonalInterests() {
           )}
         </div>
 
-        <div ref={contentRef} className="text-sm md:text-lg ml-12 mr-12">
+        <div ref={contentRef} className="text-sm md:text-lg ml-4 mr-4 md:ml-12 md:mr-12">
           {contentVisible && (
             <>
               <p className="mb-8 font-mono text-white text-left">
