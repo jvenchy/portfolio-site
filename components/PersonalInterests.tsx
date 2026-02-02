@@ -12,7 +12,7 @@ export default function PersonalInterests() {
         <div className="font-helvetica tracking-tighter" ref={titleRef}>
           {titleVisible && (
             <BlurText
-              text="🏂 other stuff 🏔️💿"
+              text="other stuff. 🏔️💿"
               delay={100}
               animateBy="words"
               direction="top"
@@ -21,7 +21,7 @@ export default function PersonalInterests() {
           )}
         </div>
 
-        <div ref={contentRef} className="text-sm md:text-lg ml-4 mr-4 md:ml-12 md:mr-12">
+        <div ref={contentRef} className="text-sm md:text-lg mr-4 md:mr-12">
           {contentVisible && (
             <>
               <p className="mb-8 font-mono text-white text-left">
@@ -38,7 +38,7 @@ export default function PersonalInterests() {
                   className="transition-all duration-500 text-theme hover:text-themedark hover:underline ml-2"
                 >
                   soundcloud.com/northcedar
-                </a> & drop a follow!</span>
+                </a>.</span>
                 
               </div>
             </>

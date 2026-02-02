@@ -374,7 +374,7 @@ export default function Experiences() {
           {titleVisible && (
             <>
               <BlurText
-                text="work experience"
+                text="work experience."
                 delay={100}
                 animateBy="words"
                 direction="top"

@@ -6,6 +6,7 @@ import BlurText from "./BlurText";
 export default function Introduction() {
   const [phase, setPhase] = useState(1);
   const [showSecondText, setShowSecondText] = useState(false);
+  const [showThirdText, setShowThirdText] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFirstAnimationComplete = () => {
@@ -18,6 +19,14 @@ export default function Introduction() {
 
   const handleSecondAnimationComplete = () => {
     console.log('Second animation completed!');
+    setTimeout(() => {
+      setPhase(3);
+      setShowThirdText(true);
+    }, 2000);
+  };
+
+  const handleThirdAnimationComplete = () => {
+    console.log('Third animation completed!');
   };
 
   return (
@@ -77,7 +86,7 @@ export default function Introduction() {
             <h1 className="text-4xl md:text-7xl font-helvetica tracking-tighter mb-4 md:mb-8 text-theme flex items-center justify-center">
               {phase === 1 && (
                 <BlurText
-                  text="hey there."
+                  text="hey there..."
                   delay={150}
                   animateBy="words"
                   direction="top"
@@ -92,6 +101,16 @@ export default function Introduction() {
                   animateBy="words"
                   direction="top"
                   onAnimationComplete={handleSecondAnimationComplete}
+                  className="text-4xl md:text-7xl font-bold text-white"
+                />
+              )}
+              {phase === 3 && showThirdText && (
+                <BlurText
+                  text="welcome to my portfolio."
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  onAnimationComplete={handleThirdAnimationComplete}
                   className="text-4xl md:text-7xl font-bold text-white"
                 />
               )}

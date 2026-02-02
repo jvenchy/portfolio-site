@@ -393,7 +393,7 @@ export default function Projects() {
           {titleVisible && (
             <>
               <BlurText
-                text="projects"
+                text="projects."
                 delay={100}
                 animateBy="words"
                 direction="top"

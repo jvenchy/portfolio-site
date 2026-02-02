@@ -13,7 +13,7 @@ export default function About() {
         <div className="font-helvetica tracking-tighter" ref={titleRef}>
           {titleVisible && (
             <BlurText
-              text="about me"
+              text="about me."
               delay={100}
               animateBy="words"
               direction="top"

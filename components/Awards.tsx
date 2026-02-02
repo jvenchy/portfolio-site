@@ -249,7 +249,7 @@ export default function Awards() {
           {titleVisible && (
             <>
               <BlurText
-                text="awards & recognition"
+                text="awards & recognition."
                 delay={100}
                 animateBy="words"
                 direction="top"
