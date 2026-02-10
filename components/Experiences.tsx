@@ -23,9 +23,24 @@ const experiences: Experience[] = [
   {
     id: 1,
     title: "Software Engineer Intern",
+    company: "Shopify",
+    year: "Incoming - May 2025 start",
+    duration: "4 months",
+    type: "internship",
+    imageUrl: "/experience-logos/shopify.png",
+    description:
+      "Accepted an internship offer to join Shopify's Toronto team in May 2025, where I will be working on building scalable e-commerce solutions and enhancing the merchant experience.",
+    achievements: [
+      "TBD!",
+    ],
+    technologies: ["TBD"]
+  },
+  {
+    id: 2,
+    title: "Software Engineer Intern",
     company: "Boost Collective",
-    year: "Dec. 2025 - Present",
-    duration: "2+ months",
+    year: "Jan. 2025 - Present",
+    duration: "4 months",
     type: "internship",
     imageUrl: "/experience-logos/boost-collective.png",
     description:
@@ -38,7 +53,7 @@ const experiences: Experience[] = [
     technologies: ["PNPM", "Monorepo", "Analytics", "CMS", "Backend Development", "Data Processing"]
   },
   {
-    id: 2,
+    id: 3,
     title: "Director of Operations",
     company: "Google Developer Student Clubs - UTSG",
     year: "Sep. 2025 - Present",
@@ -56,11 +71,11 @@ const experiences: Experience[] = [
     technologies: ["Leadership", "Operations Management", "Community Building", "Event Planning", "Google Technologies"]
   },
   {
-    id: 3,
+    id: 4,
     title: "Founder & Lead Engineer",
     company: "Camel (saycamel.com)",
     year: "Jan. 2025 - Present",
-    duration: "3+ months",
+    duration: "1+ year",
     type: "founder",
     imageUrl: "/experience-logos/camel.png",
     description:
@@ -74,11 +89,11 @@ const experiences: Experience[] = [
     technologies: ["Next.js", "React.js", "Python", "Gemini", "Vercel", "Supabase", "Machine Learning", "TF-IDF", "Selenium"]
   },
   {
-    id: 4,
+    id: 5,
     title: "Software Developer",
     company: "Department of Computer Science @ UofT, SDS Team",
     year: "May 2025 - December 2025",
-    duration: "9+ months",
+    duration: "8 months",
     type: "part-time",
     imageUrl: "/experience-logos/uoftcs.png",
     description:
@@ -92,7 +107,7 @@ const experiences: Experience[] = [
     technologies: ["TypeScript", "Python", "CI/CD", "Testing", "Educational Technology", "UX Design"]
   },
   {
-    id: 5,
+    id: 6,
     title: "Software Engineer Research Intern",
     company: "Ontario Institute for Studies in Education @ UofT",
     year: "Sept. 2024 - Dec. 2024",
@@ -109,7 +124,7 @@ const experiences: Experience[] = [
     technologies: ["React", "Google Firebase", "UI/UX Design", "Backend Optimization", "Educational Technology"]
   },
   {
-    id: 6,
+    id: 7,
     title: "Software QA Dev",
     company: "Stellar",
     year: "Dec. 2023 - May 2025",

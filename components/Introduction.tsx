@@ -111,12 +111,12 @@ export default function Introduction() {
                   animateBy="words"
                   direction="top"
                   onAnimationComplete={handleThirdAnimationComplete}
-                  className="text-4xl md:text-7xl font-bold text-white"
+                  className="text-4xl md:text-7xl font-bold text-white text-center"
                 />
               )}
             </h1>
           </div>
-          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text text-white bg-black max-w-3xl mx-auto px-4">
+          <p className="mb-4 font-mono text-transparent text-base md:text-lg transition-all bg-clip-text text-white bg-black max-w-3xl mx-auto px-4 text-center">
               i'm a <span className="text-[#7a9d7e]">software engineer</span> with a passion for full-stack development, system architecture, and clean UX.
           </p>
           <div className="flex flex-row justify-center font-helvetica tracking-tighter space-x-4 mt-4">
