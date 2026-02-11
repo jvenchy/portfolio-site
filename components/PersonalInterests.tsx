@@ -16,7 +16,7 @@ export default function PersonalInterests() {
               delay={100}
               animateBy="words"
               direction="top"
-              className="text-5xl md:text-7xl font-bold mb-12 text-white text-center"
+              className="text-5xl md:text-7xl font-bold mb-12 text-white text-left"
             />
           )}
         </div>

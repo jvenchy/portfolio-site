@@ -333,6 +333,8 @@ export default function Projects() {
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
   const [currentPage, setCurrentPage] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const filteredProjects = filter === 'featured'
     ? projects.filter(p => p.featured)
@@ -385,6 +387,33 @@ export default function Projects() {
     }, 300);
   };
 
+  // Minimum swipe distance (in px) to trigger page change
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && currentPage < totalPages - 1) {
+      handlePageChange(currentPage + 1);
+    }
+    if (isRightSwipe && currentPage > 0) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
   return (
     <section className="min-h-screen flex flex-col justify-center py-20">
       <div className="w-full max-w-5xl font-helvetica tracking-tighter mx-auto px-6 relative">
@@ -407,7 +436,13 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div ref={gridRef} className="overflow-hidden">
+        <div
+          ref={gridRef}
+          className="overflow-hidden"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[600px] transition-all duration-300 ease-in-out"
             style={{
@@ -454,6 +489,60 @@ export default function Projects() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
+        )}
+
+        {/* Mobile Navigation Controls */}
+        {totalPages > 1 && (
+          <div className="lg:hidden mt-8 flex flex-col items-center space-y-4">
+            {/* Navigation Buttons */}
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={() => handlePageChange(Math.max(0, currentPage - 1))}
+                disabled={currentPage === 0 || isTransitioning}
+                className="p-3 backdrop-blur-md bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed group"
+                aria-label="Previous page"
+              >
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Page Indicator */}
+              <div className="flex items-center space-x-2 px-4 py-2 backdrop-blur-md bg-white/5 border border-white/10 rounded-full">
+                <span className="text-white text-sm font-medium">
+                  {currentPage + 1} / {totalPages}
+                </span>
+              </div>
+
+              <button
+                onClick={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
+                disabled={currentPage === totalPages - 1 || isTransitioning}
+                className="p-3 backdrop-blur-md bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed group"
+                aria-label="Next page"
+              >
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex items-center space-x-2">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index)}
+                  disabled={isTransitioning}
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentPage
+                      ? 'w-8 h-2 bg-white'
+                      : 'w-2 h-2 bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to page ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         )}
 
         {/* Modal */}

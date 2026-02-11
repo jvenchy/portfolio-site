@@ -181,7 +181,7 @@ const ExperienceCard: React.FC<{
 }> = ({ experience, onClick, index, isVisible }) => {
   return (
     <div
-      className="group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 cursor-pointer font-helvetica tracking-tighter transition-all duration-700 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] hover:-translate-y-1"
+      className="group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden p-6 cursor-pointer font-helvetica tracking-tighter transition-all duration-700 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] hover:-translate-y-1"
       onClick={onClick}
       style={{
         opacity: isVisible ? 1 : 0,
@@ -197,9 +197,9 @@ const ExperienceCard: React.FC<{
       </div> */}
 
       {/* Company Icon */}
-      <div className="flex items-center space-x-4 mb-4">
+      <div className="flex items-start space-x-4 mb-4">
         {experience.imageUrl ? (
-          <div className="relative w-12 h-12 backdrop-blur-md bg-white/10 rounded-xl overflow-hidden">
+          <div className="relative w-12 h-12 flex-shrink-0 backdrop-blur-md bg-white/10 rounded-xl overflow-hidden">
             <Image
               src={experience.imageUrl}
               alt={`${experience.company} logo`}
@@ -208,11 +208,11 @@ const ExperienceCard: React.FC<{
             />
           </div>
         ) : (
-          <div className="p-3 backdrop-blur-md bg-white/10 rounded-xl">
+          <div className="p-3 flex-shrink-0 backdrop-blur-md bg-white/10 rounded-xl">
             <FaBuilding className="text-xl text-white" />
           </div>
         )}
-        <div>
+        <div className="min-w-0 flex-1">
           <h3 className="text-xl font-bold text-white group-hover:text-blue-100 transition-colors duration-300">
             {experience.title}
           </h3>
